@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Loader2 } from 'lucide-react';
+import { X, Loader2, Github, ExternalLink } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,6 +20,8 @@ type Project = {
   image: string;
   details: ProjectDetail;
   orientation?: 'vertical' | 'horizontal';
+  githubUrl?: string;
+  liveUrl?: string;
 };
 
 const projects: Project[] = [
@@ -45,6 +47,8 @@ const projects: Project[] = [
     description: 'I started this project as an academic analysis to understand customer satisfaction when dealing with chatbots. We ended up building a live demonstration model that the NexKirana startup used for their customer service, backed by the RIDDL Incubator.',
     tags: ['Python', 'Machine Learning', 'React', 'Gemini API'],
     image: '/nexkirana.png',
+    githubUrl: 'https://github.com/sahilas-gif/chatbot_in_marketing',
+    liveUrl: 'https://chatbot-in-marketing-1.onrender.com/',
     details: {
       challenge: 'We started by analyzing MBA survey data regarding chatbot service recovery. We quickly found out that complex ensemble methods like Random Forest suffered from overfitting due to our small sample size of 34.',
       solution: 'I pivoted to using Linear models like Ridge and Lasso Regression which proved highly robust. We built a machine learning pipeline that predicted Satisfaction, Frustration, and Problem Resolution, all combined to predict Repeat purchase intent.',
@@ -126,10 +130,37 @@ const ProjectCard = React.memo(({ project, onClick, cardRef }: { project: Projec
         </h3>
       </div>
 
-      <div className="lg:w-[35%]">
+      <div className="lg:w-[35%] flex flex-col gap-4">
         <p className="text-[#333] text-base md:text-lg leading-relaxed">
           {highlightKeywords(project.description)}
         </p>
+
+        {(project.githubUrl || project.liveUrl) && (
+          <div className="flex gap-4 mt-1" onClick={(e) => e.stopPropagation()}>
+            {project.githubUrl && (
+              <a 
+                href={project.githubUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-black transition-colors"
+              >
+                <Github className="w-4 h-4" />
+                <span>Code</span>
+              </a>
+            )}
+            {project.liveUrl && (
+              <a 
+                href={project.liveUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-black transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                <span>Live Demo</span>
+              </a>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="lg:w-[20%] flex flex-wrap gap-2 justify-start lg:justify-end">
@@ -315,9 +346,37 @@ export default function Projects() {
                     {/* Summary */}
                     <div>
                       <h3 className="text-2xl font-bold text-gray-900 mb-4 tracking-tight">Project Overview</h3>
-                      <p className="text-gray-700 text-lg leading-relaxed">
+                      <p className="text-gray-700 text-lg leading-relaxed mb-8">
                         {highlightKeywords(selectedProject.description)}
                       </p>
+
+                      {/* Action Buttons */}
+                      {(selectedProject.githubUrl || selectedProject.liveUrl) && (
+                        <div className="flex flex-wrap gap-4 mb-2">
+                          {selectedProject.liveUrl && (
+                            <a 
+                              href={selectedProject.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-lg shadow-orange-200 hover:scale-[1.02] active:scale-[0.98]"
+                            >
+                              <ExternalLink className="w-5 h-5" />
+                              View Live Demo
+                            </a>
+                          )}
+                          {selectedProject.githubUrl && (
+                            <a 
+                              href={selectedProject.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2 bg-white border-2 border-gray-100 hover:border-gray-200 text-gray-900 px-8 py-4 rounded-2xl font-bold transition-all hover:bg-gray-50 hover:scale-[1.02] active:scale-[0.98]"
+                            >
+                              <Github className="w-5 h-5" />
+                              Source Code
+                            </a>
+                          )}
+                        </div>
+                      )}
                     </div>
 
                     {/* Tech Stack Row */}

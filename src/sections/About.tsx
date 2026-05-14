@@ -74,9 +74,8 @@ export default function About() {
           A strategic problem solver skilled in agile workflows, aiming to bridge
           the gap between business requirements and scalable technical
           architecture. Experienced in working with startups to build additions
-          to their product. With a unique blend of management acumen and
-          technical expertise, I bring a holistic perspective to every project —
-          understanding not just how to build, but why it matters.
+          to their product. With a unique blend of management studies and
+          technical expertise, I don’t just build for the sake of building; I focus on the 'why' to ensure every project serves a clear, impactful purpose.
         </p>
       </div>
     </section>
