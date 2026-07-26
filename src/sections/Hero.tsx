@@ -56,12 +56,12 @@ export default function Hero() {
       {/* Left portrait - fixed/sticky */}
       <div
         ref={imageRef}
-        className="hidden md:block w-[40%] sticky top-0 h-screen"
+        className="hidden md:block w-[40%] sticky top-0 h-screen overflow-hidden"
       >
         <img
           src="/IMG_2401.jpg"
           alt="Sahil Singh"
-          className="w-full h-full object-cover grayscale"
+          className="w-full h-full object-cover object-top grayscale scale-125"
         />
       </div>
 
@@ -72,7 +72,7 @@ export default function Hero() {
           <img
             src="/IMG_2401.jpg"
             alt="Sahil Singh"
-            className="w-full h-full object-cover grayscale"
+            className="w-full h-full object-cover object-top grayscale scale-125"
           />
         </div>
 

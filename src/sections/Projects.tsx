@@ -44,8 +44,8 @@ const projects: Project[] = [
     orientation: 'vertical'
   },
   {
-    name: 'QuickBite Chatbot (built for demonstration purpose for zeu startup)',
-    description: 'I started this project as an academic analysis to understand customer satisfaction when dealing with chatbots. We ended up building a live demonstration model that the NexKirana startup used for their customer service, backed by the RIDDL Incubator.',
+    name: 'QuickBite Chatbot',
+    description: 'Built as a demonstration project for the Zeu startup. I started this project as an academic analysis to understand customer satisfaction when dealing with chatbots. We ended up building a live demonstration model that the NexKirana startup used for their customer service, backed by the RIDDL Incubator.',
     tags: ['Python', 'Machine Learning', 'React', 'Gemini API'],
     image: '/nexkirana.png',
     githubUrl: 'https://github.com/sahilas-gif/chatbot_in_marketing',
@@ -78,6 +78,40 @@ const projects: Project[] = [
       impact: 'Successfully eliminated rate limit exhaustion, keeping turn by turn tracking completely stable while providing accurate, pollution aware navigation.'
     },
     orientation: 'vertical'
+  },
+  {
+    name: 'Hospitality BI',
+    description: 'The hotel owner handed over 12 months of raw bill register data. I engineered a data pipeline and built an interactive Power BI dashboard to figure out exactly where they were making money and where they were losing it.',
+    tags: ['Power BI', 'Python', 'Data Analytics'],
+    image: '/bi-dashboard.png',
+    details: {
+      challenge: 'The challenge was digging through approximately 2.07 Crore in total revenue across 12 months to find actionable insights for Ocean Suites rather than just looking at messy Excel files.',
+      solution: 'I analyzed the data and uncovered three major findings: The Food and Beverage Gap, The B2B Goldmine, and The Executive Audience.',
+      features: [
+        'The F&B Gap: MakeMyTrip brought massive volume but the average food cart size was under ₹110. I suggested packaging "Breakfast Included" rates.',
+        'The B2B Goldmine: Corporate channels like Carnival Support Services averaged ₹3,026 in F&B per booking. One corporate booking outspends 15 OTA bookings.',
+        'The Executive Audience: Executive rooms showed a 36 percent higher food order value than standard rooms, highlighting the need for quick dial room service.'
+      ],
+      impact: 'I presented these findings directly to the hotel owner, who immediately implemented the MakeMyTrip package recommendations we suggested to plug the revenue leaks.'
+    },
+    orientation: 'horizontal'
+  },
+  {
+    name: 'DxEDGE IT Consultancy',
+    description: 'I recently finished IT consultancy at Savvydigitech, part of the DxEDGE program run by CII, with support from NITI Aayog and AICTE. The basic idea: students get placed with actual companies to work on actual problems.',
+    tags: ['IT Consultancy', 'Digital Transformation', 'MSME'],
+    image: '/dexedge.jfif',
+    details: {
+      challenge: 'There were no case studies or simulated scenarios. Savvydigitech handles ERP, IT Security, and Cloud Solutions. My task was to find where things were slowing down digitally.',
+      solution: 'I mapped out their digital workflows and proposed actionable solutions that could realistically be built and implemented by their team.',
+      features: [
+        'Worked on actual problems within a real corporate environment, stepping away from purely academic exercises.',
+        'Analyzed digital bottlenecks across their Enterprise Resource Planning and Cloud Solution pipelines.',
+        'Received invaluable mentorship from Dr. Naimesh Tugare Sir and Subhash Salvi Sir to keep the project focused and practical.'
+      ],
+      impact: 'Successfully completed the consultancy, providing Savvydigitech with realistic proposals to improve their digital efficiency. I was given actual work to do and room to figure it out.'
+    },
+    orientation: 'horizontal'
   },
 ];
 
