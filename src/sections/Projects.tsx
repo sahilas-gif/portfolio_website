@@ -26,24 +26,25 @@ type Project = {
 
 const projects: Project[] = [
   {
-    name: 'AqiLizer',
-    description: 'I built a mobile application that actively routes users along the healthiest path possible. By bringing in real time Google Air Quality and Directions data, the app helps athletes and pedestrians avoid harmful urban air pollution.',
-    tags: ['Flutter', 'Spring Boot', 'PostgreSQL'],
-    image: '/aqilizer.jpg',
+    name: 'Mehendi Booking Portfolio',
+    description: 'I built a full-stack web application for a local Mehendi business to digitize client bookings and showcase a high-resolution design portfolio. By combining automated SMS notifications with a mobile-first image optimization pipeline, the platform eliminates booking lead drops and delivers a fast, responsive user experience on smartphones.',
+    tags: ['React', 'Spring Boot', 'PostgreSQL', 'Twilio SDK', 'Netlify', 'Back4app'],
+    image: '/IMG_2489.png',
+    liveUrl: 'https://magicmehendiartbypunam.netlify.app',
     details: {
-      challenge: 'Athletes and pedestrians face constant exposure to harmful urban air pollution, and this is made worse by GPS inaccuracies in dense cities known as the urban canyon effect.',
-      solution: 'Instead of just finding the shortest route, I architected a mobile app that dynamically routes users along the healthiest path by using advanced geographical filtering algorithms.',
+      challenge: 'Managing client bookings via manual phone calls and Instagram DMs led to missed leads and delayed responses. Additionally, displaying over 50 uncompressed high-resolution images caused severe mobile WebKit memory crashes, high Cumulative Layout Shift (CLS), and slow load times on mobile devices.',
+      solution: 'Instead of relying on third-party social channels, I architected an end-to-end web platform featuring an automated multi-channel notification engine, a high-performance WebP media pipeline with lazy loading, and local SEO optimization targeting local search intent.',
       features: [
-        'Brought in Google Air Quality and Directions data using Polyline Sampling and asynchronous batching.',
-        'Engineered Polyline Decimation so the mobile map renders at a smooth 60 frames per second even with thousands of coordinates.',
-        'Used mathematical GPS Kalman Filtering to predict user movement and smooth out annoying hardware signal glitches.'
+        'Automated Multi-Channel Notification Pipeline: Integrated the Twilio SMS SDK and JavaMail API into Spring Boot to trigger instant SMS and email alerts to the business owner the second a booking form is submitted.',
+        'High-Performance Responsive Image Engine: Converted portfolio assets into dual-resolution WebP formats (400w/800w) with aspect-ratio skeleton placeholders, reducing image payload size by 50% and eliminating mobile browser layout shifts (0px CLS).',
+        'Mobile-First UX & Local SEO Architecture: Engineered a strict 320px mobile-first layout with pagination (Load More) and structured JSON-LD Schema.org data to rank for high-intent local search queries across Mulund and Mumbai.'
       ],
-      impact: 'Successfully eliminated rate limit exhaustion, keeping turn by turn tracking completely stable while providing accurate, pollution aware navigation.'
+      impact: 'Reduced initial page load payload by 50%, achieved 0px Cumulative Layout Shift (CLS) on mobile WebKit, and automated 100% of client lead notifications.'
     },
     orientation: 'vertical'
   },
   {
-    name: 'NexKirana Chatbot',
+    name: 'QuickBite Chatbot (built for demonstration purpose for zeu startup)',
     description: 'I started this project as an academic analysis to understand customer satisfaction when dealing with chatbots. We ended up building a live demonstration model that the NexKirana startup used for their customer service, backed by the RIDDL Incubator.',
     tags: ['Python', 'Machine Learning', 'React', 'Gemini API'],
     image: '/nexkirana.png',
@@ -62,38 +63,21 @@ const projects: Project[] = [
     orientation: 'horizontal'
   },
   {
-    name: 'Hospitality BI',
-    description: 'The hotel owner handed over 12 months of raw bill register data. I engineered a data pipeline and built an interactive Power BI dashboard to figure out exactly where they were making money and where they were losing it.',
-    tags: ['Power BI', 'Python', 'Data Analytics'],
-    image: '/bi-dashboard.png',
+    name: 'AqiLizer',
+    description: 'I built a mobile application that actively routes users along the healthiest path possible. By bringing in real time Google Air Quality and Directions data, the app helps athletes and pedestrians avoid harmful urban air pollution.',
+    tags: ['Flutter', 'Spring Boot', 'PostgreSQL'],
+    image: '/aqilizer.jpg',
     details: {
-      challenge: 'The challenge was digging through approximately 2.07 Crore in total revenue across 12 months to find actionable insights for Ocean Suites rather than just looking at messy Excel files.',
-      solution: 'I analyzed the data and uncovered three major findings: The Food and Beverage Gap, The B2B Goldmine, and The Executive Audience.',
+      challenge: 'Athletes and pedestrians face constant exposure to harmful urban air pollution, and this is made worse by GPS inaccuracies in dense cities known as the urban canyon effect.',
+      solution: 'Instead of just finding the shortest route, I architected a mobile app that dynamically routes users along the healthiest path by using advanced geographical filtering algorithms.',
       features: [
-        'The F&B Gap: MakeMyTrip brought massive volume but the average food cart size was under ₹110. I suggested packaging "Breakfast Included" rates.',
-        'The B2B Goldmine: Corporate channels like Carnival Support Services averaged ₹3,026 in F&B per booking. One corporate booking outspends 15 OTA bookings.',
-        'The Executive Audience: Executive rooms showed a 36 percent higher food order value than standard rooms, highlighting the need for quick dial room service.'
+        'Brought in Google Air Quality and Directions data using Polyline Sampling and asynchronous batching.',
+        'Engineered Polyline Decimation so the mobile map renders at a smooth 60 frames per second even with thousands of coordinates.',
+        'Used mathematical GPS Kalman Filtering to predict user movement and smooth out annoying hardware signal glitches.'
       ],
-      impact: 'I presented these findings directly to the hotel owner, who immediately implemented the MakeMyTrip package recommendations we suggested to plug the revenue leaks.'
+      impact: 'Successfully eliminated rate limit exhaustion, keeping turn by turn tracking completely stable while providing accurate, pollution aware navigation.'
     },
-    orientation: 'horizontal'
-  },
-  {
-    name: 'DxEDGE IT Consultancy',
-    description: 'I recently finished IT consultancy at Savvydigitech, part of the DxEDGE program run by CII, with support from NITI Aayog and AICTE. The basic idea: students get placed with actual companies to work on actual problems.',
-    tags: ['IT Consultancy', 'Digital Transformation', 'MSME'],
-    image: '/dexedge.jfif',
-    details: {
-      challenge: 'There were no case studies or simulated scenarios. Savvydigitech handles ERP, IT Security, and Cloud Solutions. My task was to find where things were slowing down digitally.',
-      solution: 'I mapped out their digital workflows and proposed actionable solutions that could realistically be built and implemented by their team.',
-      features: [
-        'Worked on actual problems within a real corporate environment, stepping away from purely academic exercises.',
-        'Analyzed digital bottlenecks across their Enterprise Resource Planning and Cloud Solution pipelines.',
-        'Received invaluable mentorship from Dr. Naimesh Tugare Sir and Subhash Salvi Sir to keep the project focused and practical.'
-      ],
-      impact: 'Successfully completed the consultancy, providing Savvydigitech with realistic proposals to improve their digital efficiency. I was given actual work to do and room to figure it out.'
-    },
-    orientation: 'horizontal'
+    orientation: 'vertical'
   },
 ];
 

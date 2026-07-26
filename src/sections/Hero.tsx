@@ -59,7 +59,7 @@ export default function Hero() {
         className="hidden md:block w-[40%] sticky top-0 h-screen"
       >
         <img
-          src="/profile.jpg"
+          src="/IMG_2401.jpg"
           alt="Sahil Singh"
           className="w-full h-full object-cover grayscale"
         />
@@ -70,7 +70,7 @@ export default function Hero() {
         {/* Mobile portrait */}
         <div className="md:hidden w-48 h-64 mx-auto mb-8 overflow-hidden rounded-lg">
           <img
-            src="/profile.jpg"
+            src="/IMG_2401.jpg"
             alt="Sahil Singh"
             className="w-full h-full object-cover grayscale"
           />
