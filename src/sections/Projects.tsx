@@ -26,7 +26,43 @@ type Project = {
 
 const projects: Project[] = [
   {
-    name: 'Mehendi Booking Portfolio',
+    name: 'AqiLizer',
+    description: 'I built a mobile application that actively routes users along the healthiest path possible. By bringing in real time Google Air Quality and Directions data, the app helps athletes and pedestrians avoid harmful urban air pollution.',
+    tags: ['Flutter', 'Spring Boot', 'PostgreSQL'],
+    image: '/aqilizer.jpg',
+    details: {
+      challenge: 'Athletes and pedestrians face constant exposure to harmful urban air pollution, and this is made worse by GPS inaccuracies in dense cities known as the urban canyon effect.',
+      solution: 'Instead of just finding the shortest route, I architected a mobile app that dynamically routes users along the healthiest path by using advanced geographical filtering algorithms.',
+      features: [
+        'Brought in Google Air Quality and Directions data using Polyline Sampling and asynchronous batching.',
+        'Engineered Polyline Decimation so the mobile map renders at a smooth 60 frames per second even with thousands of coordinates.',
+        'Used mathematical GPS Kalman Filtering to predict user movement and smooth out annoying hardware signal glitches.'
+      ],
+      impact: 'Successfully eliminated rate limit exhaustion, keeping turn by turn tracking completely stable while providing accurate, pollution aware navigation.'
+    },
+    orientation: 'vertical'
+  },
+  {
+    name: 'Zenhospitality.in',
+    description: 'I deployed a production FastAPI and React app on cPanel shared hosting, wiring up a2wsgi middleware and custom .htaccess rewrite rules to route /api requests to Python WSGI while preserving SPA client routing. The platform features Gemini AI powered itinerary generation, streaming chat, and a full admin portal with JWT authentication.',
+    tags: ['React 19', 'FastAPI', 'Python', 'SQLAlchemy 2.0', 'Gemini AI', 'LiteSpeed'],
+    image: '/zenhospitality.jpg',
+    liveUrl: 'https://zenhospitality.in/',
+    githubUrl: 'https://github.com/sahilas-gif/Zenhospitality',
+    details: {
+      challenge: 'Deploying a modern async Python backend (FastAPI with ASGI) on traditional cPanel shared hosting with LiteSpeed was the core problem. Standard WSGI adapters broke ASGI coroutines, the Passenger runner expected synchronous apps, and SQLite with async drivers needed absolute path resolution to avoid cold start failures.',
+      solution: 'I bridged the ASGI/WSGI gap using a2wsgi middleware inside passenger_wsgi.py, configured .htaccess to split /api traffic to the Python backend while all other routes fall through to the React SPA index.html, and built an async database layer with SQLAlchemy 2.0 and aiosqlite using absolute paths with auto-creation and data seeding handlers.',
+      features: [
+        'Integrated Gemini AI with an automated 3-tier fallback chain (gemini-3.6-flash, gemini-2.5-pro, gemini-3.5-flash) for itinerary generation and streaming chat, keeping the service up during model rate limits.',
+        'Implemented JWT authentication using HttpOnly cookies and Axios interceptors for silent token refresh, securing admin routes for package management and enquiry listings without relying on external auth providers.',
+        'Built a full admin portal with package CRUD, enquiry management, image uploads, and a branding system featuring a gold monogram on dark green across SVG, PNG, JPG, and ICO formats.'
+      ],
+      impact: 'Successfully shipped a production full-stack AI travel platform on budget shared hosting, with zero-downtime deploys, resilient AI failover, and a complete admin workflow for the business owner.'
+    },
+    orientation: 'horizontal'
+  },
+  {
+    name: 'Magic Mehendi Art by Punam',
     description: 'I built a full-stack web application for a local Mehendi business to digitize client bookings and showcase a high-resolution design portfolio. By combining automated SMS notifications with a mobile-first image optimization pipeline, the platform eliminates booking lead drops and delivers a fast, responsive user experience on smartphones.',
     tags: ['React', 'Spring Boot', 'PostgreSQL', 'Twilio SDK', 'Netlify', 'Back4app'],
     image: '/IMG_2489.png',
@@ -44,7 +80,7 @@ const projects: Project[] = [
     orientation: 'vertical'
   },
   {
-    name: 'QuickBite Chatbot',
+    name: 'Zeu (formerly NexKirana)',
     description: 'Built as a demonstration project for the Zeu startup. I started this project as an academic analysis to understand customer satisfaction when dealing with chatbots. We ended up building a live demonstration model that the NexKirana startup used for their customer service, backed by the RIDDL Incubator.',
     tags: ['Python', 'Machine Learning', 'React', 'Gemini API'],
     image: '/nexkirana.png',
@@ -63,24 +99,7 @@ const projects: Project[] = [
     orientation: 'horizontal'
   },
   {
-    name: 'AqiLizer',
-    description: 'I built a mobile application that actively routes users along the healthiest path possible. By bringing in real time Google Air Quality and Directions data, the app helps athletes and pedestrians avoid harmful urban air pollution.',
-    tags: ['Flutter', 'Spring Boot', 'PostgreSQL'],
-    image: '/aqilizer.jpg',
-    details: {
-      challenge: 'Athletes and pedestrians face constant exposure to harmful urban air pollution, and this is made worse by GPS inaccuracies in dense cities known as the urban canyon effect.',
-      solution: 'Instead of just finding the shortest route, I architected a mobile app that dynamically routes users along the healthiest path by using advanced geographical filtering algorithms.',
-      features: [
-        'Brought in Google Air Quality and Directions data using Polyline Sampling and asynchronous batching.',
-        'Engineered Polyline Decimation so the mobile map renders at a smooth 60 frames per second even with thousands of coordinates.',
-        'Used mathematical GPS Kalman Filtering to predict user movement and smooth out annoying hardware signal glitches.'
-      ],
-      impact: 'Successfully eliminated rate limit exhaustion, keeping turn by turn tracking completely stable while providing accurate, pollution aware navigation.'
-    },
-    orientation: 'vertical'
-  },
-  {
-    name: 'Hospitality BI',
+    name: 'Ocean Suites',
     description: 'The hotel owner handed over 12 months of raw bill register data. I engineered a data pipeline and built an interactive Power BI dashboard to figure out exactly where they were making money and where they were losing it.',
     tags: ['Power BI', 'Python', 'Data Analytics'],
     image: '/bi-dashboard.png',
@@ -97,7 +116,7 @@ const projects: Project[] = [
     orientation: 'horizontal'
   },
   {
-    name: 'DxEDGE IT Consultancy',
+    name: 'Dx-EDGE',
     description: 'I recently finished IT consultancy at Savvydigitech, part of the DxEDGE program run by CII, with support from NITI Aayog and AICTE. The basic idea: students get placed with actual companies to work on actual problems.',
     tags: ['IT Consultancy', 'Digital Transformation', 'MSME'],
     image: '/dexedge.jfif',
@@ -117,9 +136,9 @@ const projects: Project[] = [
 
 // Helper to highlight keywords
 const highlightKeywords = (text: string) => {
-  const parts = text.split(/(Java|Python|React.js|React)/gi);
+  const parts = text.split(/(Java|Python|React.js|React|FastAPI|Spring Boot|Flutter)/gi);
   return parts.map((part, i) =>
-    /^(Java|Python|React\.js|React)$/i.test(part) ? (
+    /^(Java|Python|React\.js|React|FastAPI|Spring Boot|Flutter)$/i.test(part) ? (
       <strong key={i} className="text-orange-600 font-bold">
         {part}
       </strong>
