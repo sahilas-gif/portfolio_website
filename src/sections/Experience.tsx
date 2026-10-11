@@ -98,8 +98,7 @@ export default function Experience() {
           <img
             src="/experience.jpg"
             alt="Sahil at work"
-            decoding="async"
-            className="w-full h-full object-cover object-center grayscale"
+            className="w-full h-full object-cover grayscale"
           />
         </div>
 

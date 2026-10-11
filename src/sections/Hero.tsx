@@ -43,9 +43,9 @@ export default function Hero() {
       className="relative min-h-screen flex"
       style={{ backgroundColor: '#eb901a' }}
     >
-      {/* Grain sits on the orange field, not on the portrait */}
+      {/* Grainy paper overlay */}
       <div
-        className="absolute inset-0 md:left-[40%] pointer-events-none z-10"
+        className="absolute inset-0 pointer-events-none z-10"
         style={{
           opacity: 0.15,
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
@@ -56,25 +56,23 @@ export default function Hero() {
       {/* Left portrait - fixed/sticky */}
       <div
         ref={imageRef}
-        className="hidden md:block w-[40%] sticky top-0 h-screen overflow-hidden z-20"
+        className="hidden md:block w-[40%] sticky top-0 h-screen overflow-hidden"
       >
         <img
           src="/IMG_2401.jpg"
           alt="Sahil Singh"
-          decoding="async"
-          className="w-full h-full object-cover object-top grayscale"
+          className="w-full h-full object-cover object-top grayscale scale-125"
         />
       </div>
 
       {/* Right content */}
       <div className="flex-1 flex flex-col justify-center px-8 md:px-16 py-32 md:py-0 min-h-screen">
         {/* Mobile portrait */}
-        <div className="md:hidden relative z-20 w-48 h-64 mx-auto mb-8 overflow-hidden rounded-lg">
+        <div className="md:hidden w-48 h-64 mx-auto mb-8 overflow-hidden rounded-lg">
           <img
             src="/IMG_2401.jpg"
             alt="Sahil Singh"
-            decoding="async"
-            className="w-full h-full object-cover object-top grayscale"
+            className="w-full h-full object-cover object-top grayscale scale-125"
           />
         </div>
 
@@ -93,8 +91,9 @@ export default function Hero() {
           className="mt-8 md:mt-12 text-black text-lg md:text-xl max-w-xl leading-relaxed"
           style={{ opacity: 0 }}
         >
-          MCA student, BMS before that. I build full-stack products, mostly
-          with Spring Boot, Python, React, and CSS, plus some AI and ML work.
+          Product focused Developer &amp; MCA Candidate with a background in
+          Management Studies (BMS), specializing in Full-Stack Development,
+          Spring Boot, AI/ML, Python, React and CSS.
         </p>
       </div>
     </section>
