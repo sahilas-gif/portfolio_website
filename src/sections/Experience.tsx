@@ -3,7 +3,7 @@ import SectionHeading from "../components/portfolio/SectionHeading";
 const chapters = [
   {
     title: "Building for real businesses",
-    subtitle: "FULL-STACK DEVELOPMENT",
+    subtitle: "ZENHOSPITALITY / FULL-STACK DEVELOPMENT",
     body: "Shipped Zenhospitality’s AI travel platform on shared hosting and built a booking platform for a local Mehendi business. Deployment, routing and notifications were part of the work.",
     link: "#projects",
     anchor: "Explore the builds",
@@ -11,7 +11,7 @@ const chapters = [
   {
     title: "Research into working software",
     subtitle: "ZEU / FORMERLY NEXKIRANA",
-    body: "Turned research on chatbot satisfaction into a React demonstration for a startup backed by the RIDDL Incubator. Used Ridge and Lasso models to work with a small survey dataset.",
+    body: "Built an agentic support flow with React, FastAPI and Gemini: refund-policy retrieval, order lookup, credits and human handoff, with model failover. Project internship, February–June 2026.",
     link: "https://github.com/sahilas-gif/chatbot_in_marketing",
     anchor: "Read the source",
   },
@@ -35,14 +35,14 @@ export default function Experience() {
       <div className="journey-grid">
         <div className="journey-portrait js-reveal">
           <img
-            src={`${import.meta.env.BASE_URL}experience.jpg`}
-            alt="Sahil Singh"
+            src={`${import.meta.env.BASE_URL}art/bonfire-rest.webp`}
+            alt="Fantasy illustration of a warrior resting beside a sword bonfire beneath a distant golden tree"
             loading="lazy"
-            width="600"
-            height="700"
+            width="1122"
+            height="1402"
           />
           <div>
-            <span className="eyebrow">CHARACTER RECORD</span>
+            <span className="eyebrow">A MOMENT AT THE BONFIRE</span>
             <p>Sahil Singh</p>
             <span>Mumbai, India · MCA candidate</span>
           </div>

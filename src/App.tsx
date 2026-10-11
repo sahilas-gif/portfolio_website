@@ -1,3 +1,5 @@
+import CustomCursor from "./components/portfolio/CustomCursor";
+import Timeline from "./components/portfolio/Timeline";
 import ChapterMap from "./components/portfolio/ChapterMap";
 import Navigation from "./sections/Navigation";
 import Hero from "./sections/Hero";
@@ -37,10 +39,12 @@ export default function App() {
         <Projects />
         <About />
         <Experience />
+        <Timeline />
         <Education />
         <Contact />
       </main>
       <ChapterMap />
+      <CustomCursor enabled={motion.enabled} />
     </div>
   );
 }

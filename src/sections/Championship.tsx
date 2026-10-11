@@ -8,6 +8,8 @@ import {
   ChevronDown,
 } from "lucide-react";
 import SectionHeading from "../components/portfolio/SectionHeading";
+import ProjectGallery from "../components/portfolio/ProjectGallery";
+import { projectMedia } from "../data/projectMedia";
 import ThermalMap from "../components/portfolio/ThermalMap";
 import { conquest, pipelineStages } from "../data/conquest";
 
@@ -88,15 +90,11 @@ export default function Championship() {
                 <span className="status-dot" /> SYSTEM ARCHITECTURE
                 <span>PS / 26162</span>
               </div>
-              <ThermalMap />
-              <div className="map-legend">
-                <span>
-                  <i className="legend-gold" /> Classified source
-                </span>
-                <span>
-                  <i className="legend-rot" /> Investigation candidate
-                </span>
-              </div>
+              <ProjectGallery
+                images={projectMedia.conquest}
+                title="Give Teas and the KJSIM award"
+                featuredIndex={1}
+              />
             </div>
           </div>
           <div className="conquest-metrics">

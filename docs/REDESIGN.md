@@ -1,125 +1,57 @@
-# Portfolio redesign — implementation plan
+# Tarnished Architect portfolio
 
-## Direction
+React / Vite / TypeScript, Tailwind and GSAP. Static output; no runtime credentials or backend required.
 
-An original, Soulsborne-inspired field journal: abyssal backgrounds, tarnished gold,
-engraved serif headings, precise technical annotations, a coiled sword and pixel crest.
-No game assets, manufactured performance figures, or automated audio playback.
+## Development
 
-## Work breakdown
-
-1. Inspect existing content and reference code; preserve the six original project dossiers.
-2. Extend Tailwind tokens, self-host licensed fonts, add original SVG identity and favicon.
-3. Replace the presentation layer; retain skills, contact details, education and projects.
-4. Add the KJSIM prequalifier achievement, evidence excerpt, team credit, source-linked
-   architecture and an interactive pipeline demonstration with explicitly illustrative data.
-5. Add reduced-motion-aware GSAP, optional Web Audio ambience, keyboard-safe navigation,
-   native project disclosures and clipboard feedback.
-6. Validate production build, changed-file lint, browser interactions, responsive layouts,
-   reduced motion and automated accessibility checks.
-
-## Evidence and editorial boundaries
-
-- The owner clarified **Runner-Up, KJSIM Hackathon 2026, Smart India Hackathon
-  Pre-qualifiers**, September 23, 2026. Do not claim a national championship or world first.
-- The supplied LinkedIn excerpt is owner-provided. The short URL
-  https://lnkd.in/p/dnCh8ZQR is retained; network policy blocked resolution, so no fabricated
-  LinkedIn activity ID or iframe is used.
-- Hackathon source inspected at `akkisavi/Hackathon`, commit
-  `db4785bdfa17204cf9f7d1f237e8799456923b19`. Code confirms NASA FIRMS, DBSCAN, PostGIS,
-  LightGBM, Isolation Forest, FastAPI, React/MapLibre, and Gemini. The documented 93.8%
-  validation is **96 reference-labelable sources**, not accuracy across all 4,984 sources.
-- No public hackathon deployment URL was provided. The local interactive walkthrough is
-  illustrative; it is not a live satellite feed or inference service. Source runbook linked.
-- Arbitrage source inspected at `sahilas-gif/Arbitrage`, commit
-  `c28a673690d0ac92eb8999d6e981ac753a83ef9f`. Present as a local research engine,
-  not a deployed trading service or a demonstrated financial return.
-- Existing portfolio is the source for AqiLizer, Zenhospitality, education and experience.
-  External production availability could not be checked through this network.
-- The uploaded award photo can be viewed in chat but is not exposed as a downloadable
-  workspace asset. Do not substitute generated award imagery. Add the authentic file later
-  if supplied as a workspace-accessible attachment.
-- Direct Figma access was unavailable. The owner supplied a screenshot of the retro
-  gaming portfolio (`otNeYYnhPQpjxPHu51DILO`, node `7:13136`). Its chapter progression,
-  character panels and level-selection ideas informed the accessible ChapterMap and HUD.
-  No purple palette, gated content, artificial loaders or third-party assets were copied.
-
-## Non-destructive scope
-
-`src/data/originalProjects.ts` preserves all six original case studies. Other projects stay
-available in the archive. Existing image assets, dependencies, and lockfile are retained.
-The presentation and App integration are replaced in version control; no backend required.
-
-## Delivered files
-
-- `src/App.tsx`: page composition, motion preference, global chapter selection.
-- `src/sections/`: Hero, Championship, Skills, Projects, About, Experience, Education,
-  Contact and Navigation. All existing sections remain represented.
-- `src/components/portfolio/`: original bonfire illustration, ember canvas, opt-in
-  ambience, chapter selector, thermal schematic, shared section headings.
-- `src/hooks/usePortfolioMotion.ts`: GSAP timelines, scoped ScrollTriggers, cleanup,
-  live OS reduced-motion support and the manual pause control. CSS contains the selector
-  hooks and visible resting states; JavaScript timelines do not belong in a stylesheet.
-- `src/data/conquest.ts`: achievement wording, team, LinkedIn evidence and source links.
-  Add a verified public URL to `liveDemo` to enable the platform link. Until then the
-  source runbook and explicitly illustrative local walkthrough are available.
-- `src/data/originalProjects.ts`: complete original six-project content archive.
-- `src/index.css` and `tailwind.config.js`: responsive design, gold/ash/rot/spectral
-  tokens, typography, motion fallbacks, focus styles and interactive states.
-- `public/crest.svg`: original pixel-art coiled-sword, great-rune and laurel mark;
-  used in the header, contact section, chapter selector and favicon.
-- `public/fonts/`: three self-hosted Latin variable WOFF2 fonts with OFL licenses.
-  There are no runtime Google Fonts or Figma requests and no Figma credentials in the app.
-
-## Run and deploy
-
-Use the existing checkout; no new workspace or dependencies are required.
+Use the existing checkout, without creating a worktree:
 
 ```sh
 cd /workspace/portfolio_website
-# Only if dependencies need reinstalling; preserve the lockfile and integrity checks:
 npm ci --cache /workspace/.npm-cache --registry=https://registry.npmjs.org --replace-registry-host=always --no-audit --no-fund
 npm run dev -- --host 0.0.0.0 --port 3000 --strictPort
-```
-
-```sh
 npm run build
 npm run preview -- --host 127.0.0.1 --port 4173 --strictPort
 ```
 
-Deploy the generated `dist/` folder to a static host. Fonts and illustrations are local;
-no API keys or running backend are needed. Keep HTTPS enabled for the Clipboard API;
-manual selection is provided when permission is denied. No deployment was published.
-The existing relative Vite base is preserved. The CSP retains the existing inline/eval
-allowances and adds development WebSocket connectivity; production hosts may supply a
-stricter response-header CSP tailored to their deployment.
+The registry override preserves lockfile integrity verification while avoiding the old mirror URL. Build validated with Node 24.19 and npm 11.9. Relative asset URLs support root and GitHub Pages subpath deployment.
+
+## Implementation
+
+- `src/sections/Hero.tsx`: supplied suit portrait with an oversized Greatsword edit, gold vignette, character HUD, ember canvas and explicit motion / audio controls. Original `public/IMG_2401.jpg` is preserved untouched.
+- `src/sections/Projects.tsx`: four selected projects and three visible archive projects, full images and expandable engineering dossiers.
+- `src/sections/Championship.tsx`: authentic team award photograph and dashboard gallery, pipeline walkthrough, source evidence and team credit.
+- `src/sections/Experience.tsx`: illustrated bonfire scene, Zenhospitality, Zeu and SavvyDigitech.
+- `src/components/portfolio/ImageModal.tsx`: native modal dialog with focus containment/restoration, 1–4× zoom, bounded pan, wheel/pinch, keyboard controls, original download, Escape and touch swipe dismissal. At 100%, horizontal swipes browse; downward swipes dismiss. At larger scales, gestures pan.
+- `ProjectGallery.tsx`: reusable image trigger and visible thumbnails. Images use contain sizing without crop or recoloring.
+- `Timeline.tsx`: keyboard-operable milestone tabs, December 2025 through September 2026; factual project durations remain explicit.
+- `CustomCursor.tsx`: decorative sword reticle and bounded canvas ember pool. Native cursor remains available. Touch, reduced motion, manual pause and hidden-tab cleanup are respected.
+- `src/hooks/usePortfolioMotion.ts`: scoped GSAP reveals, fine-pointer parallax, card border shimmers, cleanup and reduced motion. `src/index.css` contains selector hooks and resting states; timelines are TypeScript.
+- `tailwind.config.js`: gold, abyss, ash, crimson, spectral, typography and grace effect tokens. Self-hosted fonts retain their OFL licenses.
+
+## Evidence and imagery
+
+The event was **Runner-Up, KJSIM Hackathon 2026, Smart India Hackathon Pre-qualifiers**, on **23 September 2026**. It was not a national championship or world first. The timeline extends into September to preserve that date.
+
+Hackathon source inspected at `akkisavi/Hackathon`, commit `db4785bdfa17204cf9f7d1f237e8799456923b19`. The reported 93.8% validation is for 96 reference-labelable sources, not all 4,984 sources. No public demo was supplied; the interactive pipeline is explicitly illustrative and the repository runbook is linked.
+
+`public/projects/kjsim-award-{1,2,3,4}.jpg` are the authentic public images downloaded from Sahil's LinkedIn post:
+https://www.linkedin.com/posts/sahil-singh-88aab7395_kjsim-sih2026-smartindiahackathon-activity-7509290257385881600-7AVk
+
+Image 2 is the exact team award photograph, featured visibly in the conquest section and included with Give Teas. The available LinkedIn renditions are 800px wide; existing project screenshots retain their native higher resolutions. No screenshots were fabricated or upscaled. `src/data/projectMedia.ts` stores image dimensions, captions and alt text.
+
+`public/art/portrait-greatsword.webp` is a fantasy edit of the supplied portrait, approved by the owner. `public/art/bonfire-rest.webp` is generated fantasy artwork, described as an illustration in alt text. These are decorative, not evidence of the hackathon. Original source images and documentary screenshots remain intact.
+
+## Branches and rollback
+
+- `backup/pre-architect-overhaul-20261011`: complete pre-overhaul checkpoint, commit `1a05ac8`.
+- `feature/tarnished-architect-gallery`: source changes for review, leaving `main` intact.
+- `deploy/tarnished-architect`: static deployment output.
+
+To revert the design, check out the backup branch, run the production build, and publish its `dist/` output to the static deployment branch. Keep `.nojekyll` at the deployment root. Never include environment files in deployment output.
 
 ## Validation
 
-- TypeScript and production build: passed (Node 24.19.0, npm 11.9.0).
-- ESLint for every changed/new TS/TSX file: passed.
-- Full repository lint: the same eight pre-existing errors remain in unused UI templates
-  (seven Fast Refresh export warnings configured as errors, one `Math.random` render
-  purity error in `sidebar.tsx`). Rules and unrelated UI templates were not changed.
-- Chromium development and production pages: no uncaught errors or failed local assets;
-  all eight main content areas, all images and three fonts render.
-- Viewports: 320, 390, 768, 1024, 1440 and 1920px; no horizontal overflow, including with
-  project dossiers and the original-project archive expanded.
-- Verified pipeline stage switching/restart, project disclosures, archive preservation,
-  evidence excerpt/team, sound on/off, clipboard success and denied-permission fallback,
-  mobile menu/Escape, chapter map/Escape and current-section tracking.
-- OS reduced motion: visible content, no GSAP reveal transforms, no flame animation,
-  automatic scrolling and no active ember loop. Manual motion pause also works.
-- axe-core 4.14.0 WCAG 2/2.1 A/AA checks: no detected violations on the expanded desktop
-  page or the production mobile page with chapter navigation open. Automated checks are
-  supplemented by keyboard and visual review; they do not certify every assistive device.
-- External links preserve supplied destinations; restricted egress prevents verifying
-  the current availability of LinkedIn and external project deployments.
+Production build and lint for the changed application files pass. Browser verification covers all project images, seven cards, keyboard zoom and pan, gallery navigation, focus restoration, Escape, timeline keyboard operation and widths 320 / 390 / 768 / 1024 / 1440 / 1920 without page overflow. axe-core WCAG 2/2.1 A/AA scans of the page and open modal report no violations; automated checks do not certify all assistive technologies.
 
-## Asset follow-up
-
-The award photo supplied in chat has no downloadable file handle in this session, so it
-was not fabricated or replaced with generated imagery. The owner-provided post excerpt,
-exact award and linked original evidence are already in the achievement section. To add
-that photo later, save the authentic file in `public/` and insert a descriptive image and
-caption in the evidence panel; keep the original image and credit intact.
+Full repository lint has eight pre-existing errors in unused UI template files (Fast Refresh exports and a sidebar render-purity error). No rules have been disabled and dependencies are unchanged.

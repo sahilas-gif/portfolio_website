@@ -14,6 +14,7 @@ const chapters = [
     detail: "Selected project dossiers",
   },
   { id: "experience", label: "The journey", detail: "Experience & education" },
+  { id: "timeline", label: "Quest timeline", detail: "Builds & milestones" },
   { id: "contact", label: "Summon sign", detail: "Contact & collaboration" },
 ];
 /** The reference's level-select idea, with no progression gates or loading screens. */

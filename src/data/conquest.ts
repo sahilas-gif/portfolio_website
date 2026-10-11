@@ -7,7 +7,8 @@ export const conquest = {
   problem: "SIH PS 26162 · Disaster Management",
   repo: "https://github.com/akkisavi/Hackathon",
   revision: "db4785bdfa17204cf9f7d1f237e8799456923b19",
-  evidence: "https://lnkd.in/p/dnCh8ZQR",
+  evidence:
+    "https://www.linkedin.com/posts/sahil-singh-88aab7395_kjsim-sih2026-smartindiahackathon-activity-7509290257385881600-7AVk",
   // Set only to a verified public deployment. The embedded walkthrough is illustrative.
   liveDemo: null as string | null,
   team: [

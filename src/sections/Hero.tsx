@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowUpRight, Pause, Play, Swords } from "lucide-react";
 import Ambience from "../components/portfolio/Ambience";
-import Bonfire from "../components/portfolio/Bonfire";
+
 import Embers from "../components/portfolio/Embers";
 const stats = [
   ["VIG", "Vigor", "System reliability", "Validation & recovery"],
@@ -23,7 +23,7 @@ export default function Hero({ motion, reduced, onToggleMotion }: Props) {
             <br />
             <span>Tarnished</span>
             <br />
-            Engineer<span className="title-period">.</span>
+            Architect<span className="title-period">.</span>
           </h1>
           <p className="hero-description js-hero-reveal">
             I’m Sahil. I build systems that hold their ground.
@@ -53,7 +53,19 @@ export default function Hero({ motion, reduced, onToggleMotion }: Props) {
             <span>EST. IN THE REAL WORLD</span>
             <span>BUILD / 001</span>
           </div>
-          <Bonfire />
+          <figure className="architect-portrait js-sword">
+            <img
+              src={`${import.meta.env.BASE_URL}art/portrait-greatsword.webp`}
+              alt="Sahil in his original navy suit, hands in his pockets, with a huge fantasy Greatsword added behind his back"
+              width="1086"
+              height="1448"
+              fetchPriority="high"
+            />
+            <figcaption>
+              <span>SAHIL SINGH</span>
+              <span>TARNISHED ARCHITECT</span>
+            </figcaption>
+          </figure>
           <div className="character-hud js-hero-reveal">
             <div className="hud-heading">
               <span>CHARACTER ATTRIBUTES</span>

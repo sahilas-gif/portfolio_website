@@ -1,26 +1,29 @@
 import { ArrowUpRight, ChevronDown, Github } from "lucide-react";
 import SectionHeading from "../components/portfolio/SectionHeading";
+import ProjectGallery from "../components/portfolio/ProjectGallery";
 import { originalProjects, type Project } from "../data/originalProjects";
+import { projectMedia } from "../data/projectMedia";
+import { conquest } from "../data/conquest";
 
-const arbitrage: Project = {
-  name: "Arbitrage",
+const giveTeas: Project = {
+  name: "Give Teas",
   description:
-    "A local Python research engine for observing live esports markets: asynchronous collection, market-state validation and reproducible event records.",
-  tags: ["Python", "asyncio", "WebSockets", "Chrome DevTools"],
-  image: "",
-  githubUrl: "https://github.com/sahilas-gif/Arbitrage",
+    "Satellite detections become a shortlist of persistent industrial sources and unexplained thermal activity. Runner-Up at the KJSIM Smart India Hackathon prequalifiers.",
+  image: "/projects/kjsim-award-3.jpg",
+  tags: ["FastAPI", "PostGIS", "LightGBM", "MapLibre"],
+  githubUrl: conquest.repo,
   details: {
     challenge:
-      "Fast-moving markets are easy to misread when quotes are stale, a market is suspended, or series prices get confused with map-level prices.",
+      "NASA FIRMS detects heat, but a hot pixel alone cannot distinguish a refinery flare from a fire that needs investigation.",
     solution:
-      "A native asyncio engine separates collection, normalization, validation and alerts. Explicit observation states preserve missing data instead of fabricating prices or timestamps.",
+      "DBSCAN groups detections into persistent sources. Rules handle clear cases, a weak-label LightGBM classifier handles the remainder, and Isolation Forest flags unexplained activity.",
     features: [
-      "Market-aware observation frames with explicit timeout, disconnected and suspended states.",
-      "SHA-256 payload provenance, sequence tracking and settlement look-ahead guards.",
-      "Batch validation before append-only persistence; bounded execution and deterministic teardown.",
+      "NASA FIRMS ingestion and PostGIS storage on Supabase.",
+      "Spatial clustering and public OpenStreetMap / government reference records.",
+      "React + MapLibre investigation interface, with Gemini incident summaries and natural-language queries.",
     ],
     impact:
-      "A local research and surveillance tool with source-level auditability. No public hosted deployment or financial-return claim.",
+      "Runner-Up, KJSIM Hackathon 2026, SIH Pre-qualifiers. Built as a team using free public data and CPU inference; agency use is a proposed application, not a claimed deployment.",
   },
 };
 const selected = [
@@ -30,37 +33,30 @@ const selected = [
       githubUrl: "https://github.com/sahilas-gif/AqiLizer",
     },
     id: "aqilizer",
-    title: "AqiLizer",
-    category: "THE INVISIBLE ENEMY",
+    category: "GEOSPATIAL NAVIGATION",
     status: "MOBILE APPLICATION",
-    icon: "01",
-    color: "spectral",
-    brief:
-      "Healthier routes through the city. Air-quality-aware navigation with stable GPS tracking.",
-    notes: "Polyline sampling · Kalman filtering · Async batching",
+    notes: "Async sampling · Kalman filtering · PostgreSQL",
   },
   {
     project: originalProjects[1],
     id: "zen",
-    title: "Zenhospitality",
     category: "THE DEPLOYMENT GAUNTLET",
     status: "PRODUCTION WEBSITE",
-    icon: "02",
-    color: "gold",
-    brief:
-      "An AI travel platform shipped on shared hosting. Modern async architecture, real-world constraints.",
     notes: "ASGI → WSGI · JWT cookies · SPA routing",
   },
   {
-    project: arbitrage,
-    id: "arbitrage",
-    title: "Arbitrage",
-    category: "THE LATENCY ENCOUNTER",
-    status: "LOCAL RESEARCH ENGINE",
-    icon: "03",
-    color: "rot",
-    brief: arbitrage.description,
-    notes: "State validation · WebSockets · Append-only records",
+    project: originalProjects[2],
+    id: "mehendi",
+    category: "BOOKINGS INTO BUSINESS",
+    status: "PRODUCTION WEBSITE",
+    notes: "Spring Boot · Booking notifications · Local SEO",
+  },
+  {
+    project: giveTeas,
+    id: "conquest",
+    category: "THE THERMAL SIGNAL",
+    status: "KJSIM PREQUALIFIERS · RUNNER-UP",
+    notes: "NASA FIRMS · DBSCAN · Weak-label classification",
   },
 ];
 function Dossier({ project }: { project: Project }) {
@@ -86,6 +82,22 @@ function Dossier({ project }: { project: Project }) {
     </details>
   );
 }
+function Links({ project }: { project: Project }) {
+  return (
+    <div className="project-links">
+      {project.githubUrl && (
+        <a href={project.githubUrl} target="_blank" rel="noreferrer">
+          <Github size={14} /> Source <ArrowUpRight size={13} />
+        </a>
+      )}
+      {project.liveUrl && (
+        <a href={project.liveUrl} target="_blank" rel="noreferrer">
+          Visit website <ArrowUpRight size={13} />
+        </a>
+      )}
+    </div>
+  );
+}
 export default function Projects() {
   return (
     <section id="projects" className="section projects-section">
@@ -94,155 +106,81 @@ export default function Projects() {
           index="03"
           eyebrow="SELECTED ENCOUNTERS"
           title="Felled Bosses"
-          description="The hard parts are the interesting parts. Open a dossier to see how each was solved."
+          description="Real interfaces. Real constraints. Inspect any image, then open the architecture dossier."
         />
-        <div className="project-grid">
-          {selected.map(
-            ({
-              project,
-              id,
-              title,
-              category,
-              status,
-              icon,
-              color,
-              brief,
-              notes,
-            }) => (
-              <article
-                id={`project-${id}`}
-                className={`project-card tone-${color} js-reveal`}
-                key={id}
-              >
-                <div className="project-art">
-                  {project.image ? (
-                    <img
-                      src={`${import.meta.env.BASE_URL}${project.image.slice(1)}`}
-                      alt={`${title} project interface`}
-                      loading="lazy"
-                      width="600"
-                      height="340"
-                    />
-                  ) : (
-                    <div className="terminal-art" aria-hidden="true">
-                      <div>
-                        <span>●</span> ENGINE / OBSERVATION STREAM
-                      </div>
-                      <code>
-                        quote → normalize → validate
-                        <br />
-                        <span>state: eligible</span>
-                        <br />
-                        payload_sha256: recorded
-                        <br />
-                        sequence: monotonic
-                        <br />
-                        <span>batch: validated → append</span>
-                      </code>
-                      <svg viewBox="0 0 300 60">
-                        <path
-                          d="M0 48h35l8-17 10 5 16-25 14 40 16-15 18 4 13-24 15 10 23-17 14 28 18-8 10 13 22-21 17 8 16-25 12 20h23"
-                          fill="none"
-                          stroke="currentColor"
-                        />
-                      </svg>
-                    </div>
-                  )}
-                  <span className="project-number">{icon}</span>
-                </div>
-                <div className="project-content">
-                  <p className="micro-label">{category}</p>
-                  <h3>{title}</h3>
-                  <p className="project-brief">{brief}</p>
-                  <p className="deployment-stamp">
-                    <span aria-hidden="true">◇</span>
-                    {status}
-                  </p>
-                  <ul className="project-tags">
-                    {project.tags.slice(0, 4).map((tag) => (
-                      <li key={tag}>{tag}</li>
-                    ))}
-                  </ul>
-                  <div className="boss-meter">
-                    <div>
-                      <span>ENGINEERING NOTES</span>
-                      <span>3 / 3 DOCUMENTED</span>
-                    </div>
-                    <meter
-                      min="0"
-                      max="3"
-                      value="3"
-                      aria-label={`${title}: three engineering notes documented`}
-                    >
-                      3 of 3
-                    </meter>
-                    <span className="boss-track" aria-hidden="true">
-                      <i className="js-meter" />
-                    </span>
-                    <p>{notes}</p>
-                  </div>
-                  <Dossier project={project} />
-                  <div className="project-links">
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <Github size={14} /> Source <ArrowUpRight size={13} />
-                      </a>
-                    )}
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Visit website <ArrowUpRight size={13} />
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </article>
-            ),
-          )}
-        </div>
-        <details className="archive">
-          <summary>
-            <span>
-              THE ARCHIVE{" "}
-              <small>Four more projects. Same attention to the details.</small>
-            </span>
-            <span>
-              Open archive <ChevronDown size={17} />
-            </span>
-          </summary>
-          <div className="archive-grid">
-            {originalProjects.slice(2).map((project) => (
-              <article key={project.name}>
+        <div className="project-grid cinematic-projects">
+          {selected.map(({ project, id, category, status, notes }, i) => (
+            <article
+              id={`project-${id}`}
+              className="project-card js-reveal"
+              key={id}
+            >
+              <div className="project-card-label">
+                <span>ENCOUNTER / 0{i + 1}</span>
+                <span>ENGINEERING RECORD</span>
+              </div>
+              <ProjectGallery images={projectMedia[id]} title={project.name} />
+              <div className="project-content">
+                <p className="micro-label">{category}</p>
                 <h3>{project.name}</h3>
-                <p>{project.description}</p>
+                <p className="project-brief">{project.description}</p>
+                <p className="deployment-stamp">
+                  <span aria-hidden="true">◇</span>
+                  {status}
+                </p>
+                <ul className="project-tags">
+                  {project.tags.slice(0, 4).map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+                <div className="boss-meter">
+                  <div>
+                    <span>ENGINEERING NOTES</span>
+                    <span>3 / 3 DOCUMENTED</span>
+                  </div>
+                  <meter
+                    min="0"
+                    max="3"
+                    value="3"
+                    aria-label={`${project.name}: three engineering notes documented`}
+                  >
+                    3 of 3
+                  </meter>
+                  <span className="boss-track" aria-hidden="true">
+                    <i className="js-meter" />
+                  </span>
+                  <p>{notes}</p>
+                </div>
                 <Dossier project={project} />
-                <div className="project-links">
-                  {project.liveUrl && (
-                    <a href={project.liveUrl} target="_blank" rel="noreferrer">
-                      Visit project ↗
-                    </a>
-                  )}
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Source ↗
-                    </a>
-                  )}
+                <Links project={project} />
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="project-archive">
+          <h3 className="archive-heading">Further expeditions</h3>
+          <p>Support systems, business intelligence, and digital operations.</p>
+          <div className="archive-media-grid">
+            {originalProjects.slice(3).map((project, i) => (
+              <article
+                className="project-card js-reveal"
+                id={`project-${["zeu", "ocean", "savvy"][i]}`}
+                key={project.name}
+              >
+                <ProjectGallery
+                  images={projectMedia[["zeu", "ocean", "savvy"][i]]}
+                  title={project.name}
+                />
+                <div className="project-content">
+                  <h3>{project.name}</h3>
+                  <p>{project.description}</p>
+                  <Dossier project={project} />
+                  <Links project={project} />
                 </div>
               </article>
             ))}
           </div>
-        </details>
+        </div>
       </div>
     </section>
   );

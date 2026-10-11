@@ -71,7 +71,9 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
         xs: "calc(var(--radius) - 6px)",
       },
+      backdropBlur: { grace: "14px" },
       boxShadow: {
+        grace: "0 0 36px #c5a0591a, inset 0 0 0 1px #c5a05944",
         xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
       },
       keyframes: {

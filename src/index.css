@@ -1251,35 +1251,7 @@
 .project-links a:hover {
   color: var(--gold-light);
 }
-.terminal-art {
-  color: #aaa78e;
-  padding: 17px 19px;
-  font:
-    8px/1.9 "JetBrains Mono",
-    monospace;
-}
-.terminal-art > div {
-  padding-left: 39px;
-  color: #c3ad7e;
-  font-size: 7px;
-  margin-bottom: 23px;
-}
-.terminal-art > div > span {
-  color: #ed9b8e;
-}
-.terminal-art code {
-  font: inherit;
-}
-.terminal-art code span {
-  color: #d1b977;
-}
-.terminal-art svg {
-  position: absolute;
-  bottom: 3px;
-  right: 10px;
-  width: 55%;
-  opacity: 0.55;
-}
+
 .archive {
   margin-top: 32px;
   border-block: 1px solid var(--hairline);
@@ -1911,18 +1883,7 @@ html:has([data-motion="off"]) {
   .project-brief {
     min-height: unset;
   }
-  .terminal-art {
-    align-self: center;
-    padding: 60px 22px;
-    font-size: 9px;
-  }
-  .terminal-art > div {
-    padding-left: 0;
-  }
-  .terminal-art svg {
-    bottom: 55px;
-    width: 80%;
-  }
+
   .about-section {
     gap: 35px;
   }
@@ -2228,17 +2189,7 @@ html:has([data-motion="off"]) {
   .project-content {
     padding: 24px 22px 8px;
   }
-  .terminal-art {
-    padding: 17px 20px;
-    font-size: 8px;
-  }
-  .terminal-art > div {
-    padding-left: 42px;
-  }
-  .terminal-art svg {
-    bottom: 10px;
-    width: 60%;
-  }
+
   .project-content h3 {
     font-size: 36px;
   }
@@ -2753,4 +2704,551 @@ html {
   .achievement-banner small {
     font-size: 10px;
   }
+}
+
+/* Cinematic portrait, complete media records, and accessible inspection surfaces. */
+.hero-world {
+  padding-top: 30px;
+}
+.architect-portrait {
+  position: relative;
+  width: min(100%, 420px);
+  margin: 0 auto -35px;
+  border: 1px solid #c5a05980;
+  background: #121216;
+  overflow: hidden;
+}
+.architect-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: saturate(0.72);
+}
+.architect-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(0deg, #08080a 0%, transparent 38%),
+    linear-gradient(
+      90deg,
+      #08080a55,
+      transparent 22%,
+      transparent 78%,
+      #08080a55
+    );
+  box-shadow: inset 0 0 55px #08080a80;
+}
+.architect-portrait figcaption {
+  position: absolute;
+  z-index: 1;
+  bottom: 49px;
+  inset-inline: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #f3d484;
+  font:
+    8px/1.6 "JetBrains Mono",
+    monospace;
+  letter-spacing: 0.12em;
+}
+.hero-world .character-hud {
+  z-index: 2;
+}
+.cinematic-projects {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+.cinematic-projects .project-card,
+.archive-media-grid .project-card {
+  display: block;
+  position: relative;
+}
+.project-card::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: -1px;
+  border: 1px solid transparent;
+  background: linear-gradient(
+      115deg,
+      transparent 30%,
+      #f3d48499 48%,
+      transparent 65%
+    )
+    border-box;
+  background-size: 300% 100%;
+  background-position: var(--shimmer, 0%) 0;
+  mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+.project-card:hover::after,
+.project-card:focus-within::after {
+  animation: border-shimmer 1.8s ease both;
+}
+@keyframes border-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0% 0;
+  }
+}
+.project-card-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 15px 20px;
+  color: #c5a059;
+  font:
+    9px/1.5 "JetBrains Mono",
+    monospace;
+  letter-spacing: 0.06em;
+}
+.project-gallery {
+  min-width: 0;
+}
+.gallery-cover {
+  display: block;
+  position: relative;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  overflow: hidden;
+  background: #16171a;
+}
+.gallery-matte {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(260px, 30vw, 390px);
+  padding: 25px 20px 44px;
+  background: radial-gradient(ellipse at 50% 60%, #303028, #101013 80%);
+}
+.gallery-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: none;
+  box-shadow: none;
+}
+.gallery-portrait .gallery-image {
+  width: auto;
+  max-width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 10px 26px #0008;
+}
+.gallery-open {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #f3d484;
+  background: #08080aee;
+  border: 1px solid #c5a05966;
+  padding: 8px 11px;
+  font:
+    10px/1.5 "JetBrains Mono",
+    monospace;
+}
+.gallery-cover:hover .gallery-open {
+  background: #292319;
+}
+.gallery-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px;
+  background: #0a0a0c;
+}
+.gallery-thumbnails button {
+  min-width: 0;
+  text-align: left;
+  border: 1px solid #c5a05944;
+  padding: 6px;
+  background: #121216;
+}
+.gallery-thumbnails img {
+  display: block;
+  width: 100%;
+  height: 100px;
+  object-fit: contain;
+}
+.gallery-thumbnails span {
+  display: block;
+  color: #c9c4b9;
+  font-size: 11px;
+  line-height: 1.5;
+  padding-top: 7px;
+}
+.gallery-thumbnails svg {
+  color: #f3d484;
+  margin-top: 7px;
+}
+.conquest-visual .gallery-matte {
+  height: clamp(280px, 32vw, 400px);
+  padding: 16px 12px 44px;
+}
+.conquest-visual .gallery-thumbnails img {
+  height: 78px;
+}
+.project-archive {
+  margin-top: 70px;
+}
+.archive-heading {
+  font:
+    clamp(30px, 4vw, 42px)/1.2 "Cormorant Garamond",
+    serif;
+  margin-bottom: 12px;
+}
+.project-archive > p {
+  color: #aaa7a0;
+  margin-bottom: 25px;
+}
+.archive-media-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  align-items: start;
+}
+.archive-media-grid .gallery-matte {
+  height: 230px;
+  padding-inline: 12px;
+}
+.archive-media-grid .project-content {
+  padding: 22px 20px 8px;
+}
+.archive-media-grid h3 {
+  font-size: 29px;
+}
+.archive-media-grid .project-content > p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #aaa7a0;
+}
+.journey-portrait img {
+  filter: none;
+  object-fit: cover;
+  aspect-ratio: 4/5;
+}
+.quest-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 15px;
+}
+.quest-tabs button {
+  position: relative;
+  padding: 16px 10px 24px;
+  color: #aaa7a0;
+  min-width: 0;
+  text-align: left;
+  font-size: 14px;
+}
+.quest-tabs button::before {
+  content: "";
+  position: absolute;
+  top: 62px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #544733;
+}
+.quest-date {
+  display: block;
+  font:
+    10px/1.6 "JetBrains Mono",
+    monospace;
+  letter-spacing: 0.08em;
+}
+.quest-node {
+  display: block;
+  position: relative;
+  width: 35px;
+  font-size: 32px;
+  line-height: 1;
+  background: #08080a;
+  margin: 14px 0;
+}
+.quest-tabs [aria-selected="true"] {
+  color: #f3d484;
+}
+.quest-tabs [aria-selected="true"] .quest-node {
+  text-shadow: 0 0 16px #c5a05988;
+}
+.quest-panel {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 40px;
+  padding: 36px;
+  border: 1px solid #c5a05955;
+  background: linear-gradient(110deg, #1b1913, #101012 70%);
+  min-height: 260px;
+}
+.quest-panel h3 {
+  font:
+    clamp(32px, 4vw, 48px)/1.2 "Cormorant Garamond",
+    serif;
+  margin: 14px 0;
+}
+.quest-panel p {
+  color: #c6c0b4;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.quest-panel .quest-range,
+.quest-panel .quest-stack {
+  font:
+    11px/1.8 "JetBrains Mono",
+    monospace;
+  color: #c5a059;
+}
+.quest-stack {
+  margin: 20px 0;
+}
+.image-modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(1200px, 96vw);
+  max-width: 96vw;
+  height: min(920px, 94dvh);
+  max-height: 94dvh;
+  padding: 0;
+  border: 1px solid #c5a05988;
+  color: #e9e3d5;
+  background: #0c0c10;
+  box-shadow: 0 30px 100px #000b;
+  overflow: hidden;
+}
+.image-modal::backdrop {
+  background: #030305db;
+  backdrop-filter: blur(14px);
+}
+.lightbox-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.lightbox-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 16px 22px;
+  border-bottom: 1px solid #c5a05944;
+}
+.lightbox-header h2 {
+  font:
+    clamp(17px, 2vw, 24px)/1.3 "Cormorant Garamond",
+    serif;
+  margin-top: 6px;
+}
+.lightbox-header .micro-label {
+  font-size: 9px;
+  color: #c5a059;
+}
+.lightbox-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #c5a05955;
+  background: #19191e;
+  color: #f3d484;
+  border-radius: 3px;
+}
+.lightbox-icon:hover:not(:disabled) {
+  background: #342b1c;
+}
+.lightbox-icon:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.image-stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  touch-action: none;
+  padding: 16px;
+  background: radial-gradient(ellipse, #202023, #0a0a0d);
+}
+.image-stage img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  user-select: none;
+  flex-shrink: 0;
+  will-change: transform;
+  transition: transform 0.12s ease-out;
+}
+.image-stage[data-zoomed="true"] {
+  cursor: grab;
+}
+.image-stage[data-dragging="true"] {
+  cursor: grabbing;
+}
+.image-stage[data-dragging="true"] img {
+  transition: none;
+}
+.image-load-error {
+  position: absolute;
+  inset: 40% 20px auto;
+  background: #121216;
+  padding: 20px;
+}
+.lightbox-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+  border-top: 1px solid #c5a05944;
+  flex-wrap: wrap;
+}
+.lightbox-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font:
+    11px "JetBrains Mono",
+    monospace;
+}
+.lightbox-controls output {
+  width: 48px;
+  text-align: center;
+}
+.lightbox-help {
+  padding: 0 20px 12px;
+  margin: 0;
+  font-size: 11px;
+  color: #aaa7a0;
+  line-height: 1.5;
+}
+.cursor-embers {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  pointer-events: none;
+}
+.grace-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  z-index: 101;
+  color: #c5a059;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform;
+}
+.grace-cursor[data-hot="true"] {
+  color: #f3d484;
+  filter: drop-shadow(0 0 5px #c5a05977);
+}
+@media (max-width: 900px) {
+  .archive-media-grid {
+    grid-template-columns: 1fr;
+  }
+  .archive-media-grid .gallery-matte {
+    height: 320px;
+  }
+  .quest-panel {
+    gap: 24px;
+  }
+}
+@media (max-width: 600px) {
+  .hero-world {
+    padding-top: 25px;
+  }
+  .architect-portrait {
+    width: min(100%, 360px);
+  }
+  .cinematic-projects {
+    grid-template-columns: 1fr;
+  }
+  .gallery-matte {
+    height: 360px;
+  }
+  .gallery-thumbnails {
+    gap: 5px;
+    padding: 8px;
+  }
+  .gallery-thumbnails img {
+    height: 80px;
+  }
+  .gallery-thumbnails span {
+    font-size: 10px;
+  }
+  .quest-tabs {
+    overflow-x: auto;
+    grid-template-columns: repeat(5, 140px);
+    padding-bottom: 5px;
+  }
+  .quest-panel {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 20px;
+    min-height: 380px;
+  }
+  .image-modal {
+    height: 96dvh;
+    max-height: 96dvh;
+    width: 96vw;
+  }
+  .lightbox-header {
+    padding: 12px;
+  }
+  .lightbox-footer {
+    padding: 10px;
+    justify-content: center;
+  }
+  .lightbox-help {
+    font-size: 10px;
+    text-align: center;
+  }
+  .project-card-label {
+    font-size: 8px;
+    padding: 12px;
+  }
+}
+@media (pointer: coarse), (hover: none), (prefers-reduced-motion: reduce) {
+  .grace-cursor,
+  .cursor-embers {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .image-stage img {
+    transition: none;
+  }
+  .project-card:hover::after,
+  .project-card:focus-within::after {
+    animation: none;
+  }
+}
+[data-motion="off"] .project-card::after {
+  animation: none;
+}
+html:has([data-motion="off"]) .image-stage img {
+  transition: none;
 }

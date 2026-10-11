@@ -46,6 +46,37 @@ export function usePortfolioMotion(enabled: boolean) {
           scrollTrigger: { trigger: element, start: "top 94%", once: true },
         });
       });
+      gsap.utils.toArray<HTMLElement>(".project-card").forEach((card) => {
+        gsap.fromTo(
+          card,
+          { "--shimmer": "100%" },
+          {
+            "--shimmer": "0%",
+            duration: 1.6,
+            ease: "power2.out",
+            scrollTrigger: { trigger: card, start: "top 85%", once: true },
+          },
+        );
+      });
+      const media = gsap.matchMedia();
+      media.add("(min-width: 768px) and (pointer: fine)", () => {
+        gsap.utils.toArray<HTMLElement>(".js-depth-layer").forEach((layer) => {
+          gsap.fromTo(
+            layer,
+            { y: -5 },
+            {
+              y: 5,
+              ease: "none",
+              scrollTrigger: {
+                trigger: layer,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.7,
+              },
+            },
+          );
+        });
+      });
       gsap.utils.toArray<HTMLElement>(".js-meter").forEach((element) => {
         gsap.from(element, {
           scaleX: 0,
