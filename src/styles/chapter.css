@@ -1,0 +1,157 @@
+/* Chapter selection borrows the supplied reference's non-linear level map. */
+.chapter-map {
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
+  z-index: 55;
+}
+.chapter-map-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  min-height: 44px;
+  border: 1px solid #6a5635;
+  background: #111113;
+  color: var(--gold);
+  font:
+    8px "JetBrains Mono",
+    monospace;
+  box-shadow: 0 5px 25px #0008;
+}
+.chapter-progress {
+  border-left: 1px solid #6a5635;
+  padding-left: 10px;
+  color: #c9c0ae;
+}
+.chapter-select[hidden] {
+  display: none;
+}
+.chapter-select {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  width: 315px;
+  max-width: calc(100vw - 40px);
+  max-height: calc(100dvh - 170px);
+  overflow-y: auto;
+  padding: 19px;
+  border: 1px solid #6a5635;
+  background: #111113;
+  box-shadow: 0 15px 50px #000a;
+}
+.chapter-select-heading {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding-bottom: 17px;
+  border-bottom: 1px solid var(--hairline);
+  color: var(--gold);
+  font:
+    9px "JetBrains Mono",
+    monospace;
+}
+.chapter-select-heading small {
+  display: block;
+  margin-top: 7px;
+  color: #aaa7a0;
+  font-size: 8px;
+}
+.chapter-select ol {
+  list-style: none;
+  margin: 11px 0;
+  padding: 0;
+}
+.chapter-select a {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 12px 7px;
+  font:
+    17px "Cormorant Garamond",
+    serif;
+}
+.chapter-select a small {
+  display: block;
+  margin-top: 4px;
+  font:
+    8px "JetBrains Mono",
+    monospace;
+  color: #aaa7a0;
+}
+.chapter-select a > svg {
+  margin-left: auto;
+  color: var(--gold);
+}
+.chapter-index {
+  width: 21px;
+  height: 21px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #5d5039;
+  color: var(--gold);
+  font:
+    8px "JetBrains Mono",
+    monospace;
+}
+.chapter-select a:hover,
+.chapter-select a[aria-current="location"] {
+  background: #c5a0590c;
+  color: var(--gold-light);
+}
+.chapter-select a[aria-current="location"] .chapter-index {
+  border-color: var(--gold);
+  background: #c5a05920;
+}
+.chapter-select > p {
+  font:
+    8px/1.7 "JetBrains Mono",
+    monospace;
+  border-top: 1px solid var(--hairline);
+  padding-top: 15px;
+  color: #aaa7a0;
+}
+.site-footer {
+  padding-bottom: 85px;
+}
+html {
+  scroll-padding-bottom: 80px;
+}
+@media (max-width: 639px) {
+  body {
+    padding-bottom: 56px;
+  }
+  .site-footer {
+    padding-bottom: 24px;
+  }
+  .chapter-map {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 12px;
+    background: #111113;
+    border-top: 1px solid #6a5635;
+  }
+  .chapter-map-toggle {
+    font-size: 8px;
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .chapter-map-toggle > span:not(.chapter-progress) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .chapter-select {
+    width: min(305px, calc(100vw - 24px));
+  }
+}
+

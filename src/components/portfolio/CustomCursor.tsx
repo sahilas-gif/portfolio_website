@@ -8,7 +8,7 @@ type Particle = {
   max: number;
   radius: number;
 };
-/** Decorative companion to the native pointer; no cursor replacement or input interception. */
+/** Gold reticle for a mouse. The system pointer is hidden only while this reticle is on screen. */
 export default function CustomCursor({ enabled }: { enabled: boolean }) {
   const reticle = useRef<HTMLDivElement>(null),
     canvas = useRef<HTMLCanvasElement>(null);
@@ -31,6 +31,12 @@ export default function CustomCursor({ enabled }: { enabled: boolean }) {
         visible = false,
         hot = false,
         lastEmber = 0;
+      const showReticle = (on: boolean) => {
+        visible = on;
+        node.style.opacity = on ? "1" : "0";
+        if (on) document.documentElement.dataset.reticle = "on";
+        else delete document.documentElement.dataset.reticle;
+      };
       let particles: Particle[] = [];
       const resize = () => {
         const dpr = Math.min(devicePixelRatio, 2);
@@ -61,7 +67,6 @@ export default function CustomCursor({ enabled }: { enabled: boolean }) {
         x += (tx - x) * Math.min(1, 0.24 * dt);
         y += (ty - y) * Math.min(1, 0.24 * dt);
         node.style.transform = `translate3d(${x - 18}px,${y - 18}px,0)`;
-        node.style.opacity = visible ? "1" : "0";
         node.dataset.hot = String(hot);
         ctx.clearRect(0, 0, innerWidth, innerHeight);
         for (const p of particles) {
@@ -82,14 +87,17 @@ export default function CustomCursor({ enabled }: { enabled: boolean }) {
         if (!frame && !document.hidden) frame = requestAnimationFrame(draw);
       };
       const move = (event: PointerEvent) => {
-        if (event.pointerType !== "mouse") return;
+        if (event.pointerType !== "mouse") {
+          showReticle(false);
+          return;
+        }
         tx = event.clientX;
         ty = event.clientY;
         if (!visible) {
           x = tx;
           y = ty;
         }
-        visible = !document.querySelector("dialog[open]");
+        showReticle(!document.querySelector("dialog[open]"));
         hot =
           event.target instanceof Element &&
           !!event.target.closest("a,button,summary,input");
@@ -100,6 +108,10 @@ export default function CustomCursor({ enabled }: { enabled: boolean }) {
         start();
       };
       const click = (event: MouseEvent) => {
+        if (event instanceof PointerEvent && event.pointerType !== "mouse") {
+          showReticle(false);
+          return;
+        }
         if (
           !media.matches ||
           !visible ||
@@ -120,9 +132,9 @@ export default function CustomCursor({ enabled }: { enabled: boolean }) {
         );
         start();
       };
-      const leave = () => {
-        visible = false;
-        node.style.opacity = "0";
+      const leave = () => showReticle(false);
+      const dialogToggle = (event: Event) => {
+        if (event.target instanceof HTMLDialogElement) showReticle(false);
       };
       const visibility = () => {
         if (document.hidden) {
@@ -139,6 +151,7 @@ export default function CustomCursor({ enabled }: { enabled: boolean }) {
       window.addEventListener("click", click);
       document.documentElement.addEventListener("pointerleave", leave);
       document.addEventListener("visibilitychange", visibility);
+      document.addEventListener("toggle", dialogToggle, true);
       dispose = () => {
         cancelAnimationFrame(frame);
         window.removeEventListener("resize", resize);
@@ -146,6 +159,8 @@ export default function CustomCursor({ enabled }: { enabled: boolean }) {
         window.removeEventListener("click", click);
         document.documentElement.removeEventListener("pointerleave", leave);
         document.removeEventListener("visibilitychange", visibility);
+        document.removeEventListener("toggle", dialogToggle, true);
+        delete document.documentElement.dataset.reticle;
         node.style.opacity = "0";
         ctx.clearRect(0, 0, innerWidth, innerHeight);
         node.getAnimations().forEach((a) => a.cancel());

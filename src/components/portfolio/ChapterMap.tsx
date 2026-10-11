@@ -84,9 +84,12 @@ export default function ChapterMap() {
         <span>CHAPTER SELECT</span>
         <span className="chapter-progress">
           {String(
-            chapters.findIndex((chapter) => chapter.id === current),
+            Math.max(
+              chapters.findIndex((chapter) => chapter.id === current) + 1,
+              1,
+            ),
           ).padStart(2, "0")}{" "}
-          / 05
+          / {String(chapters.length).padStart(2, "0")}
         </span>
       </button>
       <nav
@@ -121,7 +124,7 @@ export default function ChapterMap() {
                   {visited.has(chapter.id) ? (
                     <Check size={11} aria-label="Visited" />
                   ) : (
-                    String(index).padStart(2, "0")
+                    String(index + 1).padStart(2, "0")
                   )}
                 </span>
                 <span>
