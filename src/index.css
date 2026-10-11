@@ -1545,6 +1545,42 @@
 .is-copied .chalk-glyphs {
   color: var(--gold-light);
 }
+.summon-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+  text-align: left;
+}
+.summon-form label {
+  display: grid;
+  gap: 6px;
+  color: #cbb786;
+  font:
+    9px "JetBrains Mono",
+    monospace;
+  letter-spacing: 0.06em;
+}
+.summon-form input,
+.summon-form textarea {
+  width: 100%;
+  padding: 12px;
+  color: var(--paper);
+  background: var(--ink);
+  border: 1px solid #635137;
+  font:
+    13px/1.5 "JetBrains Mono",
+    monospace;
+  resize: vertical;
+}
+.summon-form .button {
+  justify-content: center;
+}
+.summon-honeypot {
+  position: absolute;
+  left: -9999px;
+  height: 0;
+  opacity: 0;
+}
 .contact-email {
   display: flex;
   justify-content: center;

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   ArrowUpRight,
   Check,
@@ -9,10 +9,14 @@ import {
   Phone,
 } from "lucide-react";
 const email = "ssinghsahil140@gmail.com";
+const formspreeEndpoint = "https://formspree.io/f/ssinghsahil140@gmail.com";
 export default function Contact() {
   const [copyState, setCopyState] = useState<"idle" | "copied" | "manual">(
     "idle",
   );
+  const [sendState, setSendState] = useState<
+    "idle" | "sending" | "sent" | "error"
+  >("idle");
   const fallback = useRef<HTMLInputElement>(null);
   useEffect(() => {
     if (copyState === "manual") {
@@ -26,6 +30,23 @@ export default function Contact() {
       setCopyState("copied");
     } catch {
       setCopyState("manual");
+    }
+  };
+  const send = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    setSendState("sending");
+    try {
+      const response = await fetch(formspreeEndpoint, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+      if (!response.ok) throw new Error("Formspree rejected the message");
+      form.reset();
+      setSendState("sent");
+    } catch {
+      setSendState("error");
     }
   };
   return (
@@ -81,6 +102,38 @@ export default function Contact() {
                 : "Touch the sign to copy my email"}
             </span>
           </button>
+          <form className="summon-form" onSubmit={(event) => void send(event)}>
+            <label>
+              Name
+              <input name="name" type="text" autoComplete="name" required />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" autoComplete="email" required />
+            </label>
+            <label>
+              Message
+              <textarea name="message" rows={5} required />
+            </label>
+            <input
+              className="summon-honeypot"
+              type="text"
+              name="_gotcha"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+            <button className="button button-gold" type="submit" disabled={sendState === "sending"}>
+              {sendState === "sending" ? "Sending" : "Send the message"}
+            </button>
+            <p role="status" className="copy-status">
+              {sendState === "sent"
+                ? "Got it. I’ll read it from my inbox."
+                : sendState === "error"
+                  ? "That didn’t send. Use the email address below."
+                  : "Or write here. It comes to the same inbox."}
+            </p>
+          </form>
           <a className="contact-email" href={`mailto:${email}`}>
             <Mail size={17} />
             {email}
