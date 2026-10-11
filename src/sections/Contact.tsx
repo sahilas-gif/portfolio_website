@@ -9,7 +9,7 @@ import {
   Phone,
 } from "lucide-react";
 const email = "ssinghsahil140@gmail.com";
-const formspreeEndpoint = "https://formspree.io/f/ssinghsahil140@gmail.com";
+const formspreeEndpoint = "https://formspree.io/f/xqpelppa";
 export default function Contact() {
   const [copyState, setCopyState] = useState<"idle" | "copied" | "manual">(
     "idle",
