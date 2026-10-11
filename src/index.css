@@ -507,6 +507,10 @@
   height: 29px;
   border: 1px solid #65523888;
 }
+.stat-str {
+  color: #f3d484;
+  border-color: #c5a05988;
+}
 .stat-vig {
   color: #ed9b8e;
   border-color: #8c1d1888;
@@ -548,9 +552,12 @@
   background: #a48549;
 }
 .stat-row:nth-child(1) .stat-track i {
-  background: #934a40;
+  background: #c5a059;
 }
 .stat-row:nth-child(2) .stat-track i {
+  background: #934a40;
+}
+.stat-row:nth-child(3) .stat-track i {
   background: #4d7c9b;
 }
 .hero-footer {
@@ -1087,16 +1094,14 @@
 .project-art > img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 24%;
-  filter: saturate(0.48) brightness(0.68);
-  transition:
-    filter 0.3s,
-    transform 0.4s;
+  object-fit: contain;
+  object-position: center;
+  filter: none;
+  transition: transform 0.4s;
 }
 .project-card:hover .project-art img {
-  filter: saturate(0.8) brightness(0.85);
-  transform: scale(1.025);
+  filter: none;
+  transform: none;
 }
 .project-number {
   position: absolute;
@@ -1342,7 +1347,7 @@
   aspect-ratio: 4/5;
   object-fit: cover;
   object-position: center;
-  filter: grayscale(1) sepia(0.22) brightness(0.65);
+  filter: contrast(1.04);
 }
 .journey-portrait > div {
   position: absolute;
@@ -2722,7 +2727,7 @@ html {
   display: block;
   width: 100%;
   height: auto;
-  filter: saturate(0.72);
+  filter: contrast(1.04);
 }
 .architect-portrait::after {
   content: "";
@@ -2840,7 +2845,9 @@ html {
 }
 .gallery-portrait .gallery-image {
   width: auto;
-  max-width: 100%;
+  max-width: min(100%, 280px);
+  height: 100%;
+  object-fit: contain;
   border-radius: 6px;
   box-shadow: 0 10px 26px #0008;
 }
@@ -2898,7 +2905,7 @@ html {
   padding: 16px 12px 44px;
 }
 .conquest-visual .gallery-thumbnails img {
-  height: 78px;
+  height: 100px;
 }
 .project-archive {
   margin-top: 70px;
@@ -2920,8 +2927,15 @@ html {
   align-items: start;
 }
 .archive-media-grid .gallery-matte {
-  height: 230px;
+  height: clamp(260px, 30vw, 390px);
   padding-inline: 12px;
+}
+.archive-media-grid .gallery-thumbnails img,
+.gallery-thumbnails img {
+  height: 100px;
+  object-fit: contain;
+  object-position: center;
+  background: #101013;
 }
 .archive-media-grid .project-content {
   padding: 22px 20px 8px;
@@ -3170,7 +3184,7 @@ html {
     grid-template-columns: 1fr;
   }
   .archive-media-grid .gallery-matte {
-    height: 320px;
+    height: 360px;
   }
   .quest-panel {
     gap: 24px;

@@ -21,28 +21,28 @@ export const originalProjects: Project[] = [
   {
     name: "AqiLizer",
     description:
-      "I built a mobile application that actively routes users along the healthiest path possible. By bringing in real time Google Air Quality and Directions data, the app helps athletes and pedestrians avoid harmful urban air pollution.",
+      "I built a mobile app that routes people along the cleaner path. It pulls live Google Air Quality and Directions data so athletes and pedestrians can dodge the worst of the city air.",
     tags: ["Flutter", "Spring Boot", "PostgreSQL"],
     image: "/aqilizer.jpg",
     details: {
       challenge:
-        "Athletes and pedestrians face constant exposure to harmful urban air pollution, and this is made worse by GPS inaccuracies in dense cities known as the urban canyon effect.",
+        "People walking or training in a dense city breathe a lot of bad air. GPS also jumps around between tall buildings. That second problem is called the urban canyon effect.",
       solution:
-        "Instead of just finding the shortest route, I architected a mobile app that dynamically routes users along the healthiest path by using advanced geographical filtering algorithms.",
+        "The shortest route was the wrong question. I built the app to pick a healthier one, filtering the map with live air and directions data.",
       features: [
-        "Brought in Google Air Quality and Directions data using Polyline Sampling and asynchronous batching.",
-        "Engineered Polyline Decimation so the mobile map renders at a smooth 60 frames per second even with thousands of coordinates.",
-        "Used mathematical GPS Kalman Filtering to predict user movement and smooth out annoying hardware signal glitches.",
+        "Pulled Google Air Quality and Directions with polyline sampling and async batches, so the app did not hammer the API on every point.",
+        "Decimated the polyline so the map still held 60 frames per second with thousands of coordinates.",
+        "Used a GPS Kalman filter to guess the next step and smooth out the phone's signal glitches.",
       ],
       impact:
-        "Successfully eliminated rate limit exhaustion, keeping turn by turn tracking completely stable while providing accurate, pollution aware navigation.",
+        "The rate limits stopped getting exhausted. Turn-by-turn tracking stayed up, and the route still accounted for the air.",
     },
     orientation: "vertical",
   },
   {
     name: "Zenhospitality.in",
     description:
-      "I deployed a production FastAPI and React app on cPanel shared hosting, wiring up a2wsgi middleware and custom .htaccess rewrite rules to route /api requests to Python WSGI while preserving SPA client routing. The platform features Gemini AI powered itinerary generation, streaming chat, and a full admin portal with JWT authentication.",
+      "I put a FastAPI and React app on cPanel shared hosting. a2wsgi plus custom .htaccess rules send /api to Python and leave the rest of the routes for the React app. Guests get Gemini itineraries and a streaming chat. The owner gets an admin portal with JWT.",
     tags: [
       "React 19",
       "FastAPI",
@@ -56,23 +56,23 @@ export const originalProjects: Project[] = [
     githubUrl: "https://github.com/sahilas-gif/Zenhospitality",
     details: {
       challenge:
-        "Deploying a modern async Python backend (FastAPI with ASGI) on traditional cPanel shared hosting with LiteSpeed was the core problem. Standard WSGI adapters broke ASGI coroutines, the Passenger runner expected synchronous apps, and SQLite with async drivers needed absolute path resolution to avoid cold start failures.",
+        "FastAPI is async. This host is cPanel with LiteSpeed, and it wanted a normal WSGI app. The usual adapters broke the coroutines. Passenger expected a synchronous app. SQLite with the async driver also failed on cold start unless the database path was absolute.",
       solution:
-        "I bridged the ASGI/WSGI gap using a2wsgi middleware inside passenger_wsgi.py, configured .htaccess to split /api traffic to the Python backend while all other routes fall through to the React SPA index.html, and built an async database layer with SQLAlchemy 2.0 and aiosqlite using absolute paths with auto-creation and data seeding handlers.",
+        "I put a2wsgi inside passenger_wsgi.py so ASGI could run as WSGI. .htaccess sends /api to Python and everything else to the React index.html. The database is SQLAlchemy 2.0 with aiosqlite, absolute paths, and handlers that create the file and seed it if it is missing.",
       features: [
-        "Integrated Gemini AI with an automated 3-tier fallback chain (gemini-3.6-flash, gemini-2.5-pro, gemini-3.5-flash) for itinerary generation and streaming chat, keeping the service up during model rate limits.",
-        "Implemented JWT authentication using HttpOnly cookies and Axios interceptors for silent token refresh, securing admin routes for package management and enquiry listings without relying on external auth providers.",
-        "Built a full admin portal with package CRUD, enquiry management, image uploads, and a branding system featuring a gold monogram on dark green across SVG, PNG, JPG, and ICO formats.",
+        "Gemini tries gemini-3.6-flash, then gemini-2.5-pro, then gemini-3.5-flash, for itineraries and streaming chat, so a rate limit on one model does not take the chat down.",
+        "Admin login is JWT in HttpOnly cookies. Axios refreshes the token quietly. Package and enquiry screens stay locked without a third-party auth service.",
+        "The admin can edit packages, read enquiries, and upload images. The mark is a gold monogram on dark green, exported as SVG, PNG, JPG, and ICO.",
       ],
       impact:
-        "Successfully shipped a production full-stack AI travel platform on budget shared hosting, with zero-downtime deploys, resilient AI failover, and a complete admin workflow for the business owner.",
+        "The travel site is live on cheap shared hosting. Deploys do not take it down, the AI model can fail over, and the owner can run packages and enquiries from the admin.",
     },
     orientation: "horizontal",
   },
   {
     name: "Magic Mehendi Art by Punam",
     description:
-      "I built a full-stack web application for a local Mehendi business to digitize client bookings and showcase a high-resolution design portfolio. By combining automated SMS notifications with a mobile-first image optimization pipeline, the platform eliminates booking lead drops and delivers a fast, responsive user experience on smartphones.",
+      "I built the site for a local mehendi business so bookings did not depend on phone calls and Instagram DMs. The owner gets an SMS when someone books. The design gallery is compressed so phones can actually open it.",
     tags: [
       "React",
       "Spring Boot",
@@ -85,81 +85,81 @@ export const originalProjects: Project[] = [
     liveUrl: "https://magicmehendiartbypunam.netlify.app",
     details: {
       challenge:
-        "Managing client bookings via manual phone calls and Instagram DMs led to missed leads and delayed responses. Additionally, displaying over 50 uncompressed high-resolution images caused severe mobile WebKit memory crashes, high Cumulative Layout Shift (CLS), and slow load times on mobile devices.",
+        "Bookings came in by phone and Instagram DM, so leads got missed. The gallery had more than 50 huge images. On phones that crashed WebKit, shoved the layout around, and took too long to load.",
       solution:
-        "Instead of relying on third-party social channels, I architected an end-to-end web platform featuring an automated multi-channel notification engine, a high-performance WebP media pipeline with lazy loading, and local SEO optimization targeting local search intent.",
+        "I moved bookings onto the site. Spring Boot sends SMS and email when a form comes in. Gallery photos are WebP, lazy loaded, and the page is written for local search in Mulund and Mumbai.",
       features: [
-        "Automated Multi-Channel Notification Pipeline: Integrated the Twilio SMS SDK and JavaMail API into Spring Boot to trigger instant SMS and email alerts to the business owner the second a booking form is submitted.",
-        "High-Performance Responsive Image Engine: Converted portfolio assets into dual-resolution WebP formats (400w/800w) with aspect-ratio skeleton placeholders, reducing image payload size by 50% and eliminating mobile browser layout shifts (0px CLS).",
-        "Mobile-First UX & Local SEO Architecture: Engineered a strict 320px mobile-first layout with pagination (Load More) and structured JSON-LD Schema.org data to rank for high-intent local search queries across Mulund and Mumbai.",
+        "Twilio and JavaMail fire an SMS and an email to the owner as soon as someone submits the booking form.",
+        "Each photo has a 400w and an 800w WebP, plus a skeleton that holds the aspect ratio. The image payload dropped by half, and layout shift on mobile went to 0px.",
+        "The layout starts at 320px, the gallery uses Load More, and JSON-LD schema marks the business for local search in Mulund and Mumbai.",
       ],
       impact:
-        "Reduced initial page load payload by 50%, achieved 0px Cumulative Layout Shift (CLS) on mobile WebKit, and automated 100% of client lead notifications.",
+        "The first load is about half the weight it was. Mobile layout shift is 0px. Every booking form now pings the owner.",
     },
     orientation: "vertical",
   },
   {
     name: "Zeu (formerly NexKirana)",
     description:
-      "Built as a demonstration project for the Zeu startup. I started this project as an academic analysis to understand customer satisfaction when dealing with chatbots. We ended up building a live demonstration model that the NexKirana startup used for their customer service, backed by the RIDDL Incubator.",
+      "This started as an MBA-side look at how people feel after a chatbot handles a complaint. It turned into a demo that NexKirana, later Zeu, used for customer service, with the RIDDL Incubator involved.",
     tags: ["Python", "Machine Learning", "React", "Gemini API"],
     image: "/nexkirana.png",
     githubUrl: "https://github.com/sahilas-gif/chatbot_in_marketing",
     liveUrl: "https://chatbot-in-marketing-1.onrender.com/",
     details: {
       challenge:
-        "We started by analyzing MBA survey data regarding chatbot service recovery. We quickly found out that complex ensemble methods like Random Forest suffered from overfitting due to our small sample size of 34.",
+        "The data was an MBA survey on chatbot service recovery. Random Forest and the other ensemble models overfit. We only had 34 responses.",
       solution:
-        "I pivoted to using Linear models like Ridge and Lasso Regression which proved highly robust. We built a machine learning pipeline that predicted Satisfaction, Frustration, and Problem Resolution, all combined to predict Repeat purchase intent.",
+        "I switched to ridge and lasso. Those held up. The pipeline predicts satisfaction, frustration, and whether the problem got solved, then uses all three to predict whether the person would buy again.",
       features: [
-        'Machine Learning: Our research showed that an "Unresolved but polite" interaction still heavily dictates customer loyalty.',
-        "We integrated the Gemini model to enable deep thinking, discovering that fast but inaccurate answers deeply frustrated customers.",
-        "Built an easy human transfer protocol. Research showed missing and late orders were easily solved by AI, but complex issues required human empathy.",
+        "An unresolved complaint that stayed polite still drove loyalty. That was the result that surprised us.",
+        "Gemini is in the demo for longer replies. Fast wrong answers annoyed people more than slow ones.",
+        "Missing and late orders were fine for the bot. Messier problems needed a person, so there is a plain handoff to a human.",
       ],
       impact:
-        "The analytical phase resulted in a published academic research paper, a React based interactive demo, and a real world implementation for NexKirana with guidance from the RIDDL Incubator.",
+        "That work became a published paper, a React demo, and a live setup for NexKirana, with the RIDDL Incubator on the startup side.",
     },
     orientation: "horizontal",
   },
   {
     name: "Ocean Suites",
     description:
-      "The hotel owner handed over 12 months of raw bill register data. I engineered a data pipeline and built an interactive Power BI dashboard to figure out exactly where they were making money and where they were losing it.",
+      "The owner of Ocean Suites gave me 12 months of the bill register. I cleaned it and built a Power BI dashboard so we could see which bookings actually made money.",
     tags: ["Power BI", "Python", "Data Analytics"],
     image: "/bi-dashboard.png",
     details: {
       challenge:
-        "The challenge was digging through approximately 2.07 Crore in total revenue across 12 months to find actionable insights for Ocean Suites rather than just looking at messy Excel files.",
+        "About ₹2.07 crore of revenue sat in a year of Excel. The owner needed to know where food and room money was leaking, not another raw export.",
       solution:
-        "I analyzed the data and uncovered three major findings: The Food and Beverage Gap, The B2B Goldmine, and The Executive Audience.",
+        "I went through the bills and kept three findings: food spend by channel, what corporate bookings were worth, and how executive rooms ordered.",
       features: [
-        'The F&B Gap: MakeMyTrip brought massive volume but the average food cart size was under ₹110. I suggested packaging "Breakfast Included" rates.',
-        "The B2B Goldmine: Corporate channels like Carnival Support Services averaged ₹3,026 in F&B per booking. One corporate booking outspends 15 OTA bookings.",
-        "The Executive Audience: Executive rooms showed a 36 percent higher food order value than standard rooms, highlighting the need for quick dial room service.",
+        'MakeMyTrip brought the volume, but the average food cart was under ₹110. I suggested a "Breakfast Included" rate.',
+        "Carnival Support Services and similar corporate channels averaged ₹3,026 in food and beverage per booking. One of those outspent about 15 OTA bookings.",
+        "Executive rooms ordered about 36 percent more food than standard rooms, so room service needed to be easy to reach.",
       ],
       impact:
-        "I presented these findings directly to the hotel owner, who immediately implemented the MakeMyTrip package recommendations we suggested to plug the revenue leaks.",
+        "I walked the owner through it. He put the MakeMyTrip breakfast package in place.",
     },
     orientation: "horizontal",
   },
   {
     name: "Dx-EDGE",
     description:
-      "I recently finished IT consultancy at Savvydigitech, part of the DxEDGE program run by CII, with support from NITI Aayog and AICTE. The basic idea: students get placed with actual companies to work on actual problems.",
+      "I finished an IT consultancy at Savvydigitech through DxEDGE, a CII program backed by NITI Aayog and AICTE. Students sit with a company and work on a problem they actually have.",
     tags: ["IT Consultancy", "Digital Transformation", "MSME"],
     image: "/dexedge.jfif",
     details: {
       challenge:
-        "There were no case studies or simulated scenarios. Savvydigitech handles ERP, IT Security, and Cloud Solutions. My task was to find where things were slowing down digitally.",
+        "No case study, no fake brief. Savvydigitech does ERP, IT security, and cloud work. I had to find where their own digital work was getting stuck.",
       solution:
-        "I mapped out their digital workflows and proposed actionable solutions that could realistically be built and implemented by their team.",
+        "I mapped the workflows and wrote proposals their team could actually build.",
       features: [
-        "Worked on actual problems within a real corporate environment, stepping away from purely academic exercises.",
-        "Analyzed digital bottlenecks across their Enterprise Resource Planning and Cloud Solution pipelines.",
-        "Received invaluable mentorship from Dr. Naimesh Tugare Sir and Subhash Salvi Sir to keep the project focused and practical.",
+        "The problems were the company's, not a classroom scenario.",
+        "I looked for slow spots in their ERP and cloud pipelines.",
+        "Dr. Naimesh Tugare Sir and Subhash Salvi Sir kept the work practical.",
       ],
       impact:
-        "Successfully completed the consultancy, providing Savvydigitech with realistic proposals to improve their digital efficiency. I was given actual work to do and room to figure it out.",
+        "Savvydigitech got proposals they could implement. I had real work and room to figure it out.",
     },
     orientation: "horizontal",
   },

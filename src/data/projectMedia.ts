@@ -63,6 +63,13 @@ export const projectMedia: Record<string, ProjectImage[]> = {
       width: 800,
       height: 827,
     },
+    {
+      src: "projects/kjsom-hackathon-2026.jpg",
+      alt: "Handheld runner-up trophy for KJSIM Hackathon 2026, Smart India Hackathon prequalifiers",
+      caption: "Runner-up trophy · KJSIM Hackathon 2026",
+      width: 576,
+      height: 1024,
+    },
   ],
   zeu: [
     {

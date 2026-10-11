@@ -3,6 +3,7 @@ import Ambience from "../components/portfolio/Ambience";
 
 import Embers from "../components/portfolio/Embers";
 const stats = [
+  ["STR", "Strength", "Adaptability", "Change the plan when it stops working"],
   ["VIG", "Vigor", "System reliability", "Validation & recovery"],
   ["MND", "Mind", "Algorithmic architecture", "Spatial & ML pipelines"],
   ["END", "Endurance", "High-throughput latency", "Batching & async I/O"],
@@ -28,7 +29,7 @@ export default function Hero({ motion, reduced, onToggleMotion }: Props) {
           <p className="hero-description js-hero-reveal">
             I’m Sahil. I build systems that hold their ground.
             <br className="desktop-break" /> From satellite intelligence to
-            production web apps —<br className="desktop-break" /> deliberate
+            production web apps.<br className="desktop-break" /> Deliberate
             architecture, all the way down.
           </p>
           <div className="hero-actions js-hero-reveal">
