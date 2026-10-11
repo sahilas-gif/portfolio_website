@@ -1,105 +1,193 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Linkedin, Github, Phone, Mail } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
-
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import {
+  ArrowUpRight,
+  Check,
+  Copy,
+  Github,
+  Linkedin,
+  Mail,
+  Phone,
+} from "lucide-react";
+const email = "ssinghsahil140@gmail.com";
+const formspreeEndpoint = "https://formspree.io/f/xqpelppa";
 export default function Contact() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const emailRef = useRef<HTMLAnchorElement>(null);
-  const socialsRef = useRef<HTMLDivElement>(null);
-
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "manual">(
+    "idle",
+  );
+  const [sendState, setSendState] = useState<
+    "idle" | "sending" | "sent" | "error"
+  >("idle");
+  const fallback = useRef<HTMLInputElement>(null);
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-          once: true,
-        },
+    if (copyState === "manual") {
+      fallback.current?.focus();
+      fallback.current?.select();
+    }
+  }, [copyState]);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopyState("copied");
+    } catch {
+      setCopyState("manual");
+    }
+  };
+  const send = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    setSendState("sending");
+    try {
+      const response = await fetch(formspreeEndpoint, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
       });
-
-      tl.fromTo(
-        headlineRef.current,
-        { opacity: 0, x: -100 },
-        { opacity: 1, x: 0, duration: 1, ease: 'power3.out' }
-      )
-        .fromTo(
-          emailRef.current,
-          { opacity: 0, x: -80 },
-          { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out' },
-          '-=0.5'
-        )
-        .fromTo(
-          socialsRef.current,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
-          '-=0.4'
-        );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
+      if (!response.ok) throw new Error("Formspree rejected the message");
+      form.reset();
+      setSendState("sent");
+    } catch {
+      setSendState("error");
+    }
+  };
   return (
     <section
       id="contact"
-      ref={sectionRef}
-      className="min-h-screen flex flex-col justify-center items-center py-[120px] px-[5vw]"
-      style={{ backgroundColor: '#000000' }}
+      className="contact-section"
+      aria-labelledby="contact-title"
     >
-      <div className="max-w-[1400px] mx-auto text-center">
-        <h2
-          ref={headlineRef}
-          className="text-white font-bold text-[48px] sm:text-[64px] md:text-[80px] lg:text-[120px] xl:text-[160px] leading-[0.95] tracking-[-2px] will-change-transform"
-          style={{ opacity: 0 }}
-        >
-          LET'S
-          <br />
-          CONNECT
-        </h2>
-
-        <a
-          ref={emailRef}
-          href="mailto:ssinghsahil140@gmail.com"
-          className="inline-flex items-center gap-3 text-white text-2xl md:text-4xl font-medium mt-12 md:mt-16 hover:opacity-70 transition-opacity"
-          style={{ opacity: 0 }}
-        >
-          <Mail className="w-8 h-8 md:w-10 md:h-10" />
-          ssinghsahil140@gmail.com
-        </a>
-
-        <div
-          ref={socialsRef}
-          className="flex items-center justify-center gap-8 md:gap-12 mt-12 md:mt-16"
-          style={{ opacity: 0 }}
-        >
-          <a
-            href="https://www.linkedin.com/in/sahil-singh-88aab7395/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white hover:opacity-70 transition-opacity"
+      <div className="shell">
+        <div className="contact-ornament js-reveal">
+          <span />
+          <img
+            src={`${import.meta.env.BASE_URL}crest.svg`}
+            width="72"
+            height="72"
+            alt=""
+          />
+          <span />
+        </div>
+        <div className="contact-copy js-reveal">
+          <p className="eyebrow">CO-OP STARTS WITH A CONVERSATION</p>
+          <h2 id="contact-title">
+            Leave a<br />
+            <em>summon sign.</em>
+          </h2>
+          <p>
+            Have a difficult problem, a thoughtful team, or a build worth doing?
+            <br />
+            Let’s talk about what comes next.
+          </p>
+        </div>
+        <div className="summon-terminal js-reveal">
+          <div className="terminal-heading">
+            <span className="status-dot" /> GOLDEN SUMMON SIGN
+            <span>CONTACT / SAHIL</span>
+          </div>
+          <button
+            className={`glyph-button ${copyState === "copied" ? "is-copied" : ""}`}
+            type="button"
+            onClick={() => void copy()}
           >
-            <Linkedin className="w-8 h-8 md:w-10 md:h-10" />
+            <span className="chalk-glyphs" aria-hidden="true">
+              ᛋ ⟐ ╪ ⟡ ᛁ ╱╲
+            </span>
+            <span className="glyph-action">
+              {copyState === "copied" ? (
+                <Check size={15} />
+              ) : (
+                <Copy size={15} />
+              )}{" "}
+              {copyState === "copied"
+                ? "Summon sign copied"
+                : "Touch the sign to copy my email"}
+            </span>
+          </button>
+          <form className="summon-form" onSubmit={(event) => void send(event)}>
+            <label>
+              Name
+              <input name="name" type="text" autoComplete="name" required />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" autoComplete="email" required />
+            </label>
+            <label>
+              Message
+              <textarea name="message" rows={5} required />
+            </label>
+            <input
+              className="summon-honeypot"
+              type="text"
+              name="_gotcha"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+            <button className="button button-gold" type="submit" disabled={sendState === "sending"}>
+              {sendState === "sending" ? "Sending" : "Send the message"}
+            </button>
+            <p role="status" className="copy-status">
+              {sendState === "sent"
+                ? "Got it. I’ll read it from my inbox."
+                : sendState === "error"
+                  ? "That didn’t send. Use the email address below."
+                  : "Or write here. It comes to the same inbox."}
+            </p>
+          </form>
+          <a className="contact-email" href={`mailto:${email}`}>
+            <Mail size={17} />
+            {email}
+            <ArrowUpRight size={18} />
           </a>
+          <p role="status" className="copy-status">
+            {copyState === "copied"
+              ? "Email address copied. Ready when you are."
+              : copyState === "manual"
+                ? "Clipboard unavailable. Select and copy the address below."
+                : "Or open your email app using the address above."}
+          </p>
+          {copyState === "manual" && (
+            <input
+              ref={fallback}
+              className="manual-copy"
+              aria-label="Email address to copy manually"
+              readOnly
+              value={email}
+            />
+          )}
+        </div>
+        <div className="social-links js-reveal">
           <a
             href="https://github.com/sahilas-gif"
             target="_blank"
-            rel="noopener noreferrer"
-            className="text-white hover:opacity-70 transition-opacity"
+            rel="noreferrer"
           >
-            <Github className="w-8 h-8 md:w-10 md:h-10" />
+            <Github size={17} />
+            GitHub
+            <ArrowUpRight size={14} />
           </a>
           <a
-            href="tel:+919326465509"
-            className="text-white hover:opacity-70 transition-opacity flex items-center gap-2 text-xl md:text-3xl font-medium"
+            href="https://www.linkedin.com/in/sahil-singh-88aab7395/"
+            target="_blank"
+            rel="noreferrer"
           >
-            <Phone className="w-8 h-8 md:w-10 md:h-10" />
+            <Linkedin size={17} />
+            LinkedIn
+            <ArrowUpRight size={14} />
+          </a>
+          <a href="tel:+919326465509">
+            <Phone size={17} />
             +91 9326465509
+            <ArrowUpRight size={14} />
           </a>
         </div>
+        <footer className="site-footer">
+          <a className="footer-brand" href="#home">
+            SAHIL SINGH<span>© {new Date().getFullYear()}</span>
+          </a>
+          <p>Forged with React, TypeScript & a little perseverance.</p>
+          <a href="#home">Back to the bonfire ↑</a>
+        </footer>
       </div>
     </section>
   );

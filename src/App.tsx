@@ -1,68 +1,50 @@
-import React, { useEffect, useRef, Suspense } from 'react';
-import Lenis from 'lenis';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-import Navigation from './sections/Navigation';
-import Hero from './sections/Hero';
-import About from './sections/About';
-import Skills from './sections/Skills';
-
-// Lazy load heavy components for 60 FPS optimization
-const Projects = React.lazy(() => import('./sections/Projects'));
-const Experience = React.lazy(() => import('./sections/Experience'));
-const Education = React.lazy(() => import('./sections/Education'));
-const Contact = React.lazy(() => import('./sections/Contact'));
-
-gsap.registerPlugin(ScrollTrigger);
+import CustomCursor from "./components/portfolio/CustomCursor";
+import Timeline from "./components/portfolio/Timeline";
+import ChapterMap from "./components/portfolio/ChapterMap";
+import Navigation from "./sections/Navigation";
+import Hero from "./sections/Hero";
+import Championship from "./sections/Championship";
+import Skills from "./sections/Skills";
+import Projects from "./sections/Projects";
+import About from "./sections/About";
+import Experience from "./sections/Experience";
+import Education from "./sections/Education";
+import Contact from "./sections/Contact";
+import {
+  useMotionPreference,
+  usePortfolioMotion,
+} from "./hooks/usePortfolioMotion";
 
 export default function App() {
-  const lenisRef = useRef<Lenis | null>(null);
-
-  useEffect(() => {
-    // Initialize Lenis smooth scrolling
-    const lenis = new Lenis({
-      infinite: false,
-      syncTouch: true,
-    });
-
-    lenisRef.current = lenis;
-
-    // Connect Lenis to GSAP ScrollTrigger
-    lenis.on('scroll', ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
-    gsap.ticker.lagSmoothing(0);
-
-    return () => {
-      lenis.destroy();
-      gsap.ticker.remove(lenis.raf as unknown as gsap.TickerCallback);
-    };
-  }, []);
-
-  const handleNavClick = (id: string) => {
-    const el = document.getElementById(id);
-    if (el && lenisRef.current) {
-      lenisRef.current.scrollTo(el, { offset: -80 });
-    }
-  };
-
+  const motion = useMotionPreference();
+  const scope = usePortfolioMotion(motion.enabled);
   return (
-    <div className="relative">
-      <Navigation onNavClick={handleNavClick} />
-      <Hero />
-      <About />
-      <Skills />
-      
-      <Suspense fallback={<div className="h-screen flex items-center justify-center bg-[#f4f4f4]"><div className="w-10 h-10 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div></div>}>
+    <div
+      ref={scope}
+      className="portfolio"
+      data-motion={motion.enabled ? "on" : "off"}
+    >
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+      <Navigation />
+      <main id="main" tabIndex={-1}>
+        <Hero
+          motion={motion.enabled}
+          reduced={motion.reduced}
+          onToggleMotion={motion.toggle}
+        />
+        <Championship />
+        <Skills />
         <Projects />
+        <About />
         <Experience />
+        <Timeline />
         <Education />
         <Contact />
-      </Suspense>
+      </main>
+      <ChapterMap />
+      <CustomCursor enabled={motion.enabled} />
     </div>
   );
 }

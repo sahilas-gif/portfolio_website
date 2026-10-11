@@ -1,127 +1,74 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
-
-const stats = [
-  { value: 6, suffix: '+', label: 'Projects Shipped' },
-  { value: 3, suffix: '+', label: 'Technologies Mastered' },
-  { value: 1, suffix: '', label: 'Startup Experience' },
+import { ArrowUpRight } from "lucide-react";
+import SectionHeading from "../components/portfolio/SectionHeading";
+const chapters = [
+  {
+    title: "Building for real businesses",
+    subtitle: "ZENHOSPITALITY / FULL-STACK DEVELOPMENT",
+    body: "Shipped Zenhospitality’s AI travel platform on shared hosting and built a booking platform for a local Mehendi business. Deployment, routing and notifications were part of the work.",
+    link: "#projects",
+    anchor: "Explore the builds",
+  },
+  {
+    title: "Research into working software",
+    subtitle: "ZEU / FORMERLY NEXKIRANA",
+    body: "Built an agentic support flow with React, FastAPI and Gemini: refund-policy retrieval, order lookup, credits and human handoff, with model failover. Project internship, February to June 2026.",
+    link: "https://github.com/sahilas-gif/chatbot_in_marketing",
+    anchor: "Read the source",
+  },
+  {
+    title: "Understanding the bottlenecks",
+    subtitle: "SAVVYDIGITECH / CII DxEDGE",
+    body: "Completed an IT consultancy engagement mapping digital workflows across ERP, security and cloud operations. Proposed changes grounded in what the team could realistically implement.",
+    link: "#projects",
+    anchor: "See the project archive",
+  },
 ];
-
 export default function Experience() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const numbersRef = useRef<(HTMLSpanElement | null)[]>([]);
-  const labelsRef = useRef<(HTMLSpanElement | null)[]>([]);
-  const imageRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Image entrance
-      gsap.fromTo(
-        imageRef.current,
-        { opacity: 0, scale: 1.05 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 1.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 75%',
-            once: true,
-          },
-        }
-      );
-
-      // Number count-up animation
-      stats.forEach((stat, index) => {
-        const numEl = numbersRef.current[index];
-        if (!numEl) return;
-
-        const obj = { val: 0 };
-        gsap.to(obj, {
-          val: stat.value,
-          duration: 1.5,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 70%',
-            once: true,
-          },
-          onUpdate: () => {
-            numEl.textContent = Math.round(obj.val) + stat.suffix;
-          },
-        });
-
-        // Label entrance
-        const labelEl = labelsRef.current[index];
-        if (labelEl) {
-          gsap.fromTo(
-            labelEl,
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: 'top 70%',
-                once: true,
-              },
-              delay: 0.3 + index * 0.15,
-            }
-          );
-        }
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section
-      id="experience"
-      ref={sectionRef}
-      className="py-[120px] px-[5vw]"
-      style={{ backgroundColor: '#eb901a' }}
-    >
-      <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-        {/* Left sticky portrait */}
-        <div
-          ref={imageRef}
-          className="relative h-[400px] md:h-[600px] rounded-[20px] overflow-hidden"
-          style={{ opacity: 0 }}
-        >
+    <section id="experience" className="section shell">
+      <SectionHeading
+        index="04"
+        eyebrow="THE JOURNEY"
+        title="Lessons beyond the bonfire."
+        description="Work from the last year, outside the project cards."
+      />
+      <div className="journey-grid">
+        <div className="journey-portrait js-reveal">
           <img
-            src="/experience.jpg"
-            alt="Sahil at work"
-            className="w-full h-full object-cover grayscale"
+            src={`${import.meta.env.BASE_URL}art/bonfire-rest.webp`}
+            alt="Fantasy illustration of a warrior resting beside a sword bonfire beneath a distant golden tree"
+            loading="lazy"
+            width="1122"
+            height="1402"
           />
+          <div>
+            <span className="eyebrow">A MOMENT AT THE BONFIRE</span>
+            <p>Sahil Singh</p>
+            <span>Mumbai, India · MCA candidate</span>
+          </div>
         </div>
-
-        {/* Right stats */}
-        <div className="flex flex-col justify-center space-y-12 md:space-y-16">
-          {stats.map((stat, index) => (
-            <div key={stat.label} className="text-center md:text-left">
-              <span
-                ref={(el) => { numbersRef.current[index] = el; }}
-                className="text-[#dc2626] font-bold text-[60px] md:text-[80px] leading-none"
-              >
-                0{stat.suffix}
+        <ol className="journey-list">
+          {chapters.map((chapter, i) => (
+            <li className="js-reveal" key={chapter.title}>
+              <span className="journey-marker" aria-hidden="true">
+                0{i + 1}
               </span>
-              <span
-                ref={(el) => { labelsRef.current[index] = el; }}
-                className="block text-black text-xl md:text-2xl font-medium mt-2"
-                style={{ opacity: 0 }}
+              <p className="micro-label">{chapter.subtitle}</p>
+              <h3>{chapter.title}</h3>
+              <p>{chapter.body}</p>
+              <a
+                className="text-link"
+                href={chapter.link}
+                {...(chapter.link.startsWith("https:")
+                  ? { target: "_blank", rel: "noreferrer" }
+                  : {})}
               >
-                {stat.label}
-              </span>
-            </div>
+                {chapter.anchor}
+                <ArrowUpRight size={14} />
+              </a>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

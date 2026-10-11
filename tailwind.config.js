@@ -1,10 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        display: ["Cinzel", "Georgia", "serif"],
+        editorial: ["Cormorant Garamond", "Georgia", "serif"],
+        mono: ["JetBrains Mono", "monospace"],
+        sans: ["Arial", "Helvetica", "sans-serif"],
+      },
       colors: {
+        gold: { DEFAULT: "#c5a059", light: "#f3d484" },
+        abyss: { DEFAULT: "#08080a", raised: "#121216" },
+        ash: { DEFAULT: "#2a2a32", steel: "#787882", readable: "#aaa7a0" },
+        rot: { DEFAULT: "#8c1d18", light: "#ed9b8e" },
+        spectral: "#68b8f8",
+        parchment: "#e9e3d5",
         tangerine: "#eb901a",
         "light-grey": "#f4f4f4",
         "stat-red": "#dc2626",
@@ -59,7 +71,9 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
         xs: "calc(var(--radius) - 6px)",
       },
+      backdropBlur: { grace: "14px" },
       boxShadow: {
+        grace: "0 0 36px #c5a0591a, inset 0 0 0 1px #c5a05944",
         xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
       },
       keyframes: {
@@ -84,4 +98,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};

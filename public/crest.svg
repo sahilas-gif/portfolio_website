@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" shape-rendering="crispEdges">
+  <title>Coiled sword, great rune and laurels — Sahil Singh</title>
+  <g fill="none" stroke="#c5a059" stroke-width="2">
+    <path d="M24 9h16v4h6v6h4v16h-4v6h-6v4H24v-4h-6v-6h-4V19h4v-6h6z"/>
+    <path d="M32 5v44M22 21h20M24 33h16M25 25v12h14V25M7 30v13h4v6h6v4h10M57 30v13h-4v6h-6v4H37"/>
+  </g>
+  <g fill="#c5a059">
+    <path d="M29 4h6v7h-6zM29 13h6v6h-6zM21 19h22v4H21zM30 23h4v27h-4zM25 26h5v4h-5zM34 31h5v4h-5zM25 37h5v4h-5zM9 33H5v7h4zM13 41H9v7h4zM19 47h-6v5h6zM23 52h-6v4h6zM55 33h4v7h-4zM51 41h4v7h-4zM45 47h6v5h-6zM41 52h6v4h-6zM18 58h28v2H18z"/>
+    <path d="M23 52v-5h4v-5h3v7h4v-9h3v9h4v6H23z" fill="#f3d484"/>
+  </g>
+</svg>

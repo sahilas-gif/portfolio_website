@@ -1,100 +1,128 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ArrowDown, ArrowUpRight, Pause, Play, Swords } from "lucide-react";
+import Ambience from "../components/portfolio/Ambience";
 
-gsap.registerPlugin(ScrollTrigger);
-
-export default function Hero() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const bioRef = useRef<HTMLParagraphElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Title entrance
-      gsap.fromTo(
-        titleRef.current,
-        { opacity: 0, y: 60 },
-        { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out', delay: 0.3 }
-      );
-
-      // Bio entrance
-      gsap.fromTo(
-        bioRef.current,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.6 }
-      );
-
-      // Image entrance
-      gsap.fromTo(
-        imageRef.current,
-        { opacity: 0, scale: 1.05 },
-        { opacity: 1, scale: 1, duration: 1.4, ease: 'power3.out', delay: 0.2 }
-      );
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
-
+import Embers from "../components/portfolio/Embers";
+const stats = [
+  ["STR", "Strength", "Adaptability", "Change the plan when it stops working"],
+  ["VIG", "Vigor", "System reliability", "Validation & recovery"],
+  ["MND", "Mind", "Algorithmic architecture", "Spatial & ML pipelines"],
+  ["END", "Endurance", "High-throughput latency", "Batching & async I/O"],
+  ["DEX", "Dexterity", "Full-stack versatility", "API → interface → deploy"],
+];
+type Props = { motion: boolean; reduced: boolean; onToggleMotion: () => void };
+export default function Hero({ motion, reduced, onToggleMotion }: Props) {
   return (
-    <section
-      ref={heroRef}
-      className="relative min-h-screen flex"
-      style={{ backgroundColor: '#eb901a' }}
-    >
-      {/* Grainy paper overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none z-10"
-        style={{
-          opacity: 0.15,
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          mixBlendMode: 'multiply',
-        }}
-      />
-
-      {/* Left portrait - fixed/sticky */}
-      <div
-        ref={imageRef}
-        className="hidden md:block w-[40%] sticky top-0 h-screen overflow-hidden"
-      >
-        <img
-          src="/IMG_2401.jpg"
-          alt="Sahil Singh"
-          className="w-full h-full object-cover object-top grayscale scale-125"
-        />
-      </div>
-
-      {/* Right content */}
-      <div className="flex-1 flex flex-col justify-center px-8 md:px-16 py-32 md:py-0 min-h-screen">
-        {/* Mobile portrait */}
-        <div className="md:hidden w-48 h-64 mx-auto mb-8 overflow-hidden rounded-lg">
-          <img
-            src="/IMG_2401.jpg"
-            alt="Sahil Singh"
-            className="w-full h-full object-cover object-top grayscale scale-125"
-          />
+    <section id="home" className="hero" aria-labelledby="hero-title">
+      <Embers enabled={motion} />
+      <div className="shell hero-grid">
+        <div className="hero-copy">
+          <p className="eyebrow js-hero-reveal">
+            <span className="status-dot" /> Full-stack developer · Mumbai, India
+          </p>
+          <h1 id="hero-title" className="js-hero-reveal">
+            Awaken,
+            <br />
+            <span>Tarnished</span>
+            <br />
+            Architect<span className="title-period">.</span>
+          </h1>
+          <p className="hero-description js-hero-reveal">
+            I’m Sahil. I build systems that hold their ground.
+            <br className="desktop-break" /> From satellite intelligence to
+            production web apps.<br className="desktop-break" /> Deliberate
+            architecture, all the way down.
+          </p>
+          <div className="hero-actions js-hero-reveal">
+            <a href="#projects" className="button button-gold">
+              <Swords size={17} /> Explore my work <ArrowDown size={16} />
+            </a>
+            <a href="#championship" className="text-link">
+              The latest conquest <ArrowUpRight size={16} />
+            </a>
+          </div>
+          <div className="hero-identity js-hero-reveal">
+            <span className="tiny-crest">✧</span>
+            <p>
+              MCA CANDIDATE <span>/</span> K. J. SOMAIYA
+              <br />
+              <span>Business instinct. Engineering discipline.</span>
+            </p>
+          </div>
         </div>
-
-        <h1
-          ref={titleRef}
-          className="text-black font-bold leading-[0.9] tracking-[-2px] text-[60px] sm:text-[80px] md:text-[120px] lg:text-[160px] xl:text-[200px] will-change-transform"
-          style={{ opacity: 0 }}
-        >
-          I Create
-          <br />
-          Products
-        </h1>
-
-        <p
-          ref={bioRef}
-          className="mt-8 md:mt-12 text-black text-lg md:text-xl max-w-xl leading-relaxed"
-          style={{ opacity: 0 }}
-        >
-          Product focused Developer &amp; MCA Candidate with a background in
-          Management Studies (BMS), specializing in Full-Stack Development,
-          Spring Boot, AI/ML, Python, React and CSS.
-        </p>
+        <div className="hero-world">
+          <div className="world-label">
+            <span>EST. IN THE REAL WORLD</span>
+            <span>BUILD / 001</span>
+          </div>
+          <figure className="architect-portrait js-sword">
+            <img
+              src={`${import.meta.env.BASE_URL}art/portrait-greatsword.webp`}
+              alt="Sahil in his original navy suit, hands in his pockets, with a huge fantasy Greatsword added behind his back"
+              width="1086"
+              height="1448"
+              fetchPriority="high"
+            />
+            <figcaption>
+              <span>SAHIL SINGH</span>
+              <span>TARNISHED ARCHITECT</span>
+            </figcaption>
+          </figure>
+          <div className="character-hud js-hero-reveal">
+            <div className="hud-heading">
+              <span>CHARACTER ATTRIBUTES</span>
+              <span>CLASS: ENGINEER</span>
+            </div>
+            <dl>
+              {stats.map(([short, name, mapping, evidence]) => (
+                <div className="stat-row" key={short}>
+                  <dt>
+                    <span
+                      className={`stat-sigil stat-${short.toLowerCase()}`}
+                      aria-hidden="true"
+                    >
+                      {short}
+                    </span>
+                    <span className="stat-term">
+                      {name}
+                      <small>{mapping}</small>
+                    </span>
+                  </dt>
+                  <dd>
+                    <span className="stat-track" aria-hidden="true">
+                      <i className="js-meter" />
+                    </span>
+                    <span>{evidence}</span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div className="shell hero-footer">
+        <a href="#championship" className="descend">
+          <ArrowDown size={14} />
+          <span>DESCEND INTO THE WORK</span>
+        </a>
+        <div className="world-controls">
+          <Ambience />
+          <button
+            type="button"
+            className="quiet-control"
+            onClick={onToggleMotion}
+            disabled={reduced}
+            aria-pressed={!motion}
+          >
+            {motion ? <Pause size={13} /> : <Play size={13} />}
+            <span>
+              {reduced
+                ? "Reduced motion"
+                : motion
+                  ? "Pause motion"
+                  : "Resume motion"}
+            </span>
+          </button>
+        </div>
       </div>
     </section>
   );
