@@ -8,7 +8,7 @@ export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
-  const bodyRef = useRef<HTMLParagraphElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -66,17 +66,26 @@ export default function About() {
           Behind the Code
         </h2>
 
-        <p
-          ref={bodyRef}
-          className="text-[#333] text-lg md:text-xl mt-8 md:mt-12 leading-relaxed max-w-2xl mx-auto"
-          style={{ opacity: 0 }}
-        >
-          A strategic problem solver skilled in agile workflows, aiming to bridge
-          the gap between business requirements and scalable technical
-          architecture. Experienced in working with startups to build additions
-          to their product. With a unique blend of management studies and
-          technical expertise, I don’t just build for the sake of building; I focus on the 'why' to ensure every project serves a clear, impactful purpose.
-        </p>
+        <div ref={bodyRef} className="mt-8 md:mt-12" style={{ opacity: 0 }}>
+          <p className="text-[#333] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+            I sit between the business ask and the system that has to carry it.
+            Startups have had me add pieces to products they already ship. The
+            management degree and the engineering work are both mine, and I want
+            to know why a feature exists before I spend time on it.
+          </p>
+
+          <div className="mt-10 flex flex-col items-center gap-4">
+            <span className="text-sm font-medium tracking-[2px] uppercase text-[#333]">
+              Strength
+            </span>
+            <div className="inline-flex items-center gap-3 pl-5 pr-5 py-2 font-bold text-base md:text-lg text-black bg-white border-[3px] border-black rounded-full shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              Adaptability
+            </div>
+            <p className="text-[#333] text-base md:text-lg leading-relaxed max-w-md">
+              If the first approach stops working, I change it.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
