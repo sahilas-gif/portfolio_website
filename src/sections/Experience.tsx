@@ -11,7 +11,7 @@ const chapters = [
   {
     title: "Research into working software",
     subtitle: "ZEU / FORMERLY NEXKIRANA",
-    body: "Built an agentic support flow with React, FastAPI and Gemini: refund-policy retrieval, order lookup, credits and human handoff, with model failover. Project internship, February–June 2026.",
+    body: "Built an agentic support flow with React, FastAPI and Gemini: refund-policy retrieval, order lookup, credits and human handoff, with model failover. Project internship, February to June 2026.",
     link: "https://github.com/sahilas-gif/chatbot_in_marketing",
     anchor: "Read the source",
   },
@@ -30,7 +30,7 @@ export default function Experience() {
         index="04"
         eyebrow="THE JOURNEY"
         title="Lessons beyond the bonfire."
-        description="Experience is what remains after the problem is solved."
+        description="Work from the last year, outside the project cards."
       />
       <div className="journey-grid">
         <div className="journey-portrait js-reveal">

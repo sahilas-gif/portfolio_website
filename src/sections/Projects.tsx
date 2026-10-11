@@ -119,7 +119,12 @@ export default function Projects() {
                 <span>ENCOUNTER / 0{i + 1}</span>
                 <span>ENGINEERING RECORD</span>
               </div>
-              <ProjectGallery images={projectMedia[id]} title={project.name} />
+              <ProjectGallery
+                images={projectMedia[id]}
+                title={project.name}
+                featuredIndex={id === "conquest" ? 4 : 0}
+                wideIndex={id === "conquest" ? 2 : undefined}
+              />
               <div className="project-content">
                 <p className="micro-label">{category}</p>
                 <h3>{project.name}</h3>

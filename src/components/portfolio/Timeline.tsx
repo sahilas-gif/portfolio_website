@@ -4,7 +4,7 @@ import SectionHeading from "./SectionHeading";
 const quests = [
   {
     date: "DEC 2025",
-    range: "December 2025 – July 2026",
+    range: "December 2025 to July 2026",
     title: "AqiLizer",
     role: "BACKEND LEAD",
     body: "Built Java / Spring Boot APIs for air-quality-aware navigation. Async polyline sampling reduced API payload size by 80%+; Kalman filtering corrected GPS drift, with PostgreSQL storing geospatial data.",
@@ -13,7 +13,7 @@ const quests = [
   },
   {
     date: "FEB 2026",
-    range: "February – June 2026",
+    range: "February to June 2026",
     title: "Zeu",
     role: "PROJECT INTERN · FORMERLY NEXKIRANA",
     body: "Built an agentic support flow that retrieves refund policies and calls tools for order lookup, credits and human handoff. Model failover keeps the conversation moving when a provider is unavailable.",
@@ -22,7 +22,7 @@ const quests = [
   },
   {
     date: "JUN 2026",
-    range: "June – July 2026",
+    range: "June to July 2026",
     title: "Magic Mehendi Art",
     role: "FULL-STACK DEVELOPER",
     body: "Shipped a booking and portfolio platform for a local business, with mobile-first layouts, local SEO and automated booking notifications through Twilio SMS and JavaMail.",
@@ -31,7 +31,7 @@ const quests = [
   },
   {
     date: "AUG 2026",
-    range: "June – August 2026",
+    range: "June to August 2026",
     title: "Zenhospitality",
     role: "FULL-STACK DEVELOPER",
     body: "Brought FastAPI and React onto cPanel shared hosting. WSGI routing and .htaccess rules serve the API and SPA from one origin; JWT cookies secure routes and a Gemini fallback chain handles model limits.",

@@ -18,7 +18,7 @@ const disciplines = [
     evidence: "Thermal-source intelligence",
     link: "#championship",
     detail:
-      "APIs, spatial pipelines, classification. The machinery beneath the surface.",
+      "APIs, spatial pipelines, and classification.",
   },
   {
     title: "Sorceries",

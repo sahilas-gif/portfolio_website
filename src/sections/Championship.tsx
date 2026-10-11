@@ -46,12 +46,12 @@ export default function Championship() {
                 <span>
                   From hot pixels
                   <br />
-                  to actionable intelligence.
+                  to a source you can check.
                 </span>
               </h3>
               <p>
                 Satellites tell us where something is hot. Our system asks{" "}
-                <em>what’s burning</em> — distinguishing persistent industrial
+                <em>what’s burning</em>, and separates persistent industrial
                 sources from fires that need a closer look.
               </p>
               <p>
@@ -93,7 +93,8 @@ export default function Championship() {
               <ProjectGallery
                 images={projectMedia.conquest}
                 title="Give Teas and the KJSIM award"
-                featuredIndex={1}
+                featuredIndex={4}
+                wideIndex={2}
               />
             </div>
           </div>

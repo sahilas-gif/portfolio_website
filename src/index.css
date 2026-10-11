@@ -2869,6 +2869,30 @@ html {
 .gallery-cover:hover .gallery-open {
   background: #292319;
 }
+.gallery-wide {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0 12px 4px;
+  border: 0;
+  background: #0a0a0c;
+  text-align: left;
+}
+.gallery-wide img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+  background: #101013;
+}
+.gallery-wide span {
+  display: block;
+  color: #c9c4b9;
+  font-size: 11px;
+  line-height: 1.5;
+  padding-top: 7px;
+}
 .gallery-thumbnails {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2924,11 +2948,31 @@ html {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
-  align-items: start;
+  align-items: stretch;
+}
+.archive-media-grid .project-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.archive-media-grid .project-gallery {
+  flex: 0 0 auto;
 }
 .archive-media-grid .gallery-matte {
-  height: clamp(260px, 30vw, 390px);
-  padding-inline: 12px;
+  height: 220px;
+  padding: 0;
+}
+.archive-media-grid .gallery-image {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.archive-media-grid .project-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 .archive-media-grid .gallery-thumbnails img,
 .gallery-thumbnails img {
@@ -3184,7 +3228,7 @@ html {
     grid-template-columns: 1fr;
   }
   .archive-media-grid .gallery-matte {
-    height: 360px;
+    height: 220px;
   }
   .quest-panel {
     gap: 24px;
